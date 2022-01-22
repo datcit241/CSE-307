@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <style>
+        .section{
+            width: 65%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sectionName{
+            background-color: #f9f8f9;
+
+            padding: 10px 5px 10px 5px;
+            font-weight: bold;
+            font-size: 16px;
+
+            border-top-style: dashed;
+            border-top-width: 1px;
+            border-top-color: #bec4c9;
+
+            border-right-width: 0px;
+
+            border-bottom-style: dashed;
+            border-bottom-width: 2px;
+            border-bottom-color: #dce4e4;
+
+            border-left-style: solid;
+            border-left-color: #803cac;
+            border-left-width: 5px;
+        }
+
+        .buttons{
+            display: table;
+            margin: 40px auto 40px auto;
+        }
+
+        .section button{
+            margin-inline: 10px;
+            padding: 10px 20px;
+            font-weight: bold;;
+            border: 2px solid #682c94;
+        }
+
+        .section .selectedButton{
+            background-color: #682c94;
+            color: white;
+        }
+
+        .section button:not(.selectedButton){
+            background-color: white;
+            color: #682c94;
+        }
+
+        .section .buttonGroup:hover:not(.selectedButton){
+            background-color: #aa64de;
+            color: white;
+        }
+
+        .section button:hover{
+            background-color: #682c94;
+            color: white;
+        }
+
+        .required{
+            color: red;
+        }
+
+        td label{
+            font-weight: bold;
+        }
+
+        td input{
+            margin-block: 5px;
+            padding: 5px;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class = "section">
+        <h1 class = "sectionName">TÀI KHOẢN CỦA BẠN</h1>
+
+        <div class = "buttons">
+            <button class = "selectedButton buttonGroup">QUẢN LÝ TÀI KHOẢN</button>
+            <button class = "buttonGroup">QUẢN LÝ ĐƠN HÀNG</button>
+            <button class = "buttonGroup">THAY ĐỔI MẬT KHẨU</button>
+        </div>
+
+        <p>Bạn có thể cập nhật lại thông tin của mình tại các trường dưới đây</p>
+        <p>Lưu ý: Những trường có dấu "<span class = "required">*</span>" là bắt buộc</p>
+
+        <form action="" method = "POST">
+            <table style  = "width: 95%">
+                <tr>
+                    <td>
+                        <label for="name">Họ và tên <span class = "required">*</span></label>
+                        <br>
+                        <input type="text" id = "name" name = "name" required = "required" value = "Nguyễn Văn A">
+                    </td>
+
+                    <td>
+                        <label for="dob">Ngày sinh</label>
+                        <br>
+                        <input type="date" id = "dob" name = "dob">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="city">Tỉnh - Thành phố<span class = "required">*</span></label>
+                        <br>
+                        <input type="text" id = "city" name = "city" required = "required" value = "TP. Hồ Chí Minh">
+                    </td>
+
+                    <td>
+                        <label for="company">Công ty</label>
+                        <br>
+                        <input type="text" id = "company" name = "company" placeholder = "Công ty của bạn">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="district">Quận - Huyện<span class = "required">*</span></label>
+                        <br>
+                        <input type="text" id = "district" name = "district" required = "required" value = "Quận 5">
+                    </td>
+
+                    <td>
+                        <label for="position">Chức vụ</label>
+                        <br>
+                        <input type="text" id = "position" name = "position" placeholder = "Chức vụ tại công ty">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="address">Địa chỉ<span class = "required">*</span></label>
+                        <br>
+                        <input type="text" id = "address" name = "address" required = "required" value = "271/2 An Dương Vương, Phường 3, Quận 5, TP. Hồ Chí...">
+                    </td>
+
+                    <td>
+                        <label for="flowerName">Bạn thích Loại hoa</label>
+                        <br>
+                        <input type="text" id = "flowerName" name = "flowerName" placeholder = "Hoa hồng, Hoa lan...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="phone">Số điện thoại<span class = "required">*</span></label>
+                        <br>
+                        <input type="tel" id = "phone" name = "phone" required = "required" value = "0973 371 346">
+                    </td>
+
+                    <td>
+                        <label for="flowerColor">Bạn thích Màu hoa</label>
+                        <br>
+                        <input type="text" id = "flowerColor" name = "flowerColor" placeholder = "Màu đỏ, Màu tím...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="email">Email<span class = "required">*</span></label>
+                        <br>
+                        <input type="email" id = "email" name = "email" required = "required" value = "nguyenvana@gmail.com">
+                    </td>
+
+                    <td>
+                        <label for="style">Phong cách cắm hoa</label>
+                        <br>
+                        <input type="text" id = "style" name = "style" placeholder = "Cổ điển, Hiện đại, Đơn giản, Dễ thương...">
+                    </td>
+                </tr>
+          </table>
+
+          <div class = buttons>
+              <button tye = "submit">CẬP NHẬT THÔNG TIN</button>
+          </div>
+        </form>
+   </div>
+</body>
+</html>

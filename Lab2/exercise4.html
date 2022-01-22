@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Info Form</title>
+</head>
+<body>
+    <form action="" method = "GET">
+        <table border = "1 solid black" cellspacing = "0" cellpadding = "4" style = "width: 33%;">
+            <colgroup>
+                <col width = "100px">
+                <col>
+                <col width = "50px">
+                <col width = "60px">
+            </colgroup>
+            <tfoot>
+                <tr style = "background-color: #d8ece4;">
+                    <td colspan = "4" style = "text-align:center">
+                        <button type = "submit">Submit</button>
+                        <button type = "reset">Clear This Form</button>
+                    </td>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                <tr>
+                    <th>Last Name</th>
+                    <td colspan = "3">
+                        <input type="text" value = "Nakov" name ="lastName" style = "width: 95%">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th>First Name</th>
+                    <td colspan = "3">
+                        <input type="text" value = "Svetlin" name = "firstName" style = "width: 95%;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Address</th>
+                    <td colspan = "3">
+                        <textarea name="" id="" cols="30" rows="4" name = "address" style = "width: 90%">17 Hristo Botev Str.&#013floor 3, apt. 12</textarea>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th>City</th>
+                    <td>
+                        <input type="text" value = "Kaspichan" name = "city" style = "width: 95%">
+                    </td>
+                    <th>State</th>
+                    <td>
+                        <input type="text" name = "state" style = "width: 80%">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Zip/Postal Code</th>
+                    <td colspan = "3">
+                        <input type="text" value = "9325" name = "zip" style = "width: 20%">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Country</th>
+                    <td colspan = "3">
+                        <select name="country" id="" style = "width: 70%">
+                            <option value="bul">Bulgaria</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Phone (country code, area code, number)</th>
+                    <td colspan = "3">
+                        <p>(+<input type="text" value = "359" name = "sec1" style = "width: 15%;">)<input type = "text" value = "88" name = "sec2" style = "width: 15%">-<input text = "text" value = "8334343" name = "sec3" style = "width: 40%"></p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th>E-mail</th>
+                    <td colspan = "3">
+                        <input type="email" value = "nakov@kaspichan.org" name = "email" style = "width: 95%">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Birth date</th>
+                    <td colspan = "3">
+                        <p>Month<input text = "month" value = 06 name = "month" style = "width: 7%"> Day<input text = "day" value = "14" name = "day" style = "width: 7%"> Year (4 digit)<input text = "year" value = "1980" maxlength = "4" name = "year" style = "width: 15%"></p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Gender</th>
+                    <td colspan = "3">
+                        <select name="gender" id="">
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Other</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Starting date</th>
+                    <td colspan = "3">
+                        <p><input type="radio" checked name = "startingDate"> Spring 2006 <input type="radio" name = "startingDate"> Summer 2006</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Comments/Questions</th>
+                    <td colspan = "3">
+                        <textarea name="comments" id="" cols="30" rows="6" style = "width: 90%">Please send me mor information about the lodging.</textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</body>
+</html>
