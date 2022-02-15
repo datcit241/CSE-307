@@ -12,6 +12,10 @@
             crossorigin="anonymous"
         />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+
         <style>
             @media (max-width: 991px) {
                 #services {
@@ -20,17 +24,15 @@
             }
             @media (min-width: 992px) {
                 .section {
-                    padding-inline: 100px;
+                    padding-inline: 15%;
                 }
-                /* #section-services{
-                    width: 75%;
-                } */
             }
             .navbar {
                 background-color: #e56f7f;
                 padding: 0px;
             }
             .nav-item > .nav-link {
+                color: white !important;
                 font-weight: bold;
                 display: flex;
                 align-items: center;
@@ -38,6 +40,11 @@
                 padding-inline: 20px;
             }
             .nav-item > .nav-link:hover {
+                background-color: white;
+                opacity: 0.85;
+                color: #e56f7f !important;
+            }
+            .nav-item .active {
                 background-color: white;
                 color: #e56f7f !important;
             }
@@ -54,26 +61,53 @@
                 top: 80px;
                 /* width: 100%; */
             }
-            .html {
-                width: 100%;
+            #section-about {
+                background-color: #f6e0e3;
+                padding-top: 40px;
+                padding-bottom: 50px;
+            }
+            .section h1:first-child {
+                font-family: 'Roboto';
+                text-align: center;
+            }
+            #section-about p span {
+                font-size: 18px;
+                font-weight: bold;
+                font-family: 'Roboto';
+            }
+            #section-about .row {
+                text-align: center;
+                font-weight: bold;
+            }
+            #section-about img {
+                width: 25%;
             }
             #section-feedback {
                 background-color:#c894cc;
                 width: 100%;
-                padding: 0px;
-                margin: 0px;
             }
             #section-feedback > div:first-child {
+                padding-top: 30px;
                 background-color: #c894cc;
                 color: white;
-                text-align: center;
-                margin-bottom: 0;
+            }
+            .carousel-indicators > button {
+                width: 7px !important;
+                height: 7px !important;
+                border-radius: 50%;
+                border: 3px solid #cccccc !important;
+            }
+            .carousel-indicators > button:not(.active) {
+                background-color: transparent !important;
+            }
+            .carousel-indicators .active {
+                background-color: #d0324b;
             }
             .carousel-caption {
                 top: 20px;
             }
             .carousel-caption > p {
-                width: 75%;
+                /* width: 75%; */
                 margin-inline: auto;
             }
             .carousel-caption > p:nth-child(2) {
@@ -84,14 +118,14 @@
                 height: 200px;
             }
             #section-services {
-                margin-inline: auto; 
+                padding-top: 60px;
             }
             .card {
                 border: none;
                 border-radius: 20px;
                 background-color: #f8e4e4;
                 padding-top: 0px;
-                margin-top: 70px;
+                margin-top: 100px;
             }
             .btn-more {
                 background-color: #d4384c;
@@ -203,7 +237,52 @@
         </header>
 
         <main>
-            <div id="section-feedback" class="container section">
+
+            <div id="section-about" class="container-fluid section">
+                <div>
+                    <h1>ABOUT US</h1>
+
+                    <h3>Baking Delicious cakes since 1980</h3>
+                    <p><span>D.cake</span> was found by four bakers in 1980 in Vietnam, and became a great success soon after. One of the bakers had a daughter named Duyen and the rest of the bakers were happy to name the business the D.cake.</p>
+                    <p>Over the years determination to adhering to the incredible cake and pastry recipes brought by these bakers was the key in D.cake's grand success. The four bakers compiled all their best recipes in one single book. Today, the very old and mostly hand written recipe book is kept at D.cake in Vietnam. Although the pages are partially torn and discolored, it still functions as “the go to book” when there is any doubt among the young bakers and cake artists.</p>
+                    <p>We are proud to offer our baked goods using many of same recipes from 100 years ago atVictoria Bakery & Café. All products are handmade right in the bakery, and we bake seven days a week.</p>
+                    <p>We are determined to continue to follow the recipes and techniques closely, despite the fact that it takes us longer to make our products using the traditional ingredients and methods. You, our loyal customers know and taste the difference in real butter, quality flour, finest chocolate, handpicked fruits and premium dairy products along with the best coffee we could find.</p>
+                    <p>The mission of D.cake is never to give in to less than ideal and offer the finest products and services to our customers. As a team, we take pride in the quality we present and cherishing our customers’ trust and loyalty in us. </p>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about1.svg" alt="">
+                            <h5>MAKE WITH LOVE</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about2.svg" alt="">
+                            <h5>SEASONAL PASTRIES</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about3.svg" alt="">
+                            <h5>EVEN CATERING</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about4.svg" alt="">
+                            <h5>GLUTEN FREE OPTIONS</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about5.svg" alt="">
+                            <h5>100% HOMEMADE</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about4.svg" alt="">
+                            <h5>VEGAN OPTIONS</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-feedback" class="container-fluid section">
                 <div>
                     <h1>WHAT OUR CLIENTS SAY</h1>
                 </div>
@@ -239,7 +318,7 @@
                             <img src="images/feedback-background.jpg" class="d-block w-100" alt="..." />
                             <div class="carousel-caption d-none d-md-block">
                                 <p>
-                                    "Everybody is so pleasant! Delicious cookies and delicious coffee ground the way I like it. Thank you!"
+                                    "Everyone is so pleasant! Delicious cookies and delicious coffee ground the way I like it. Thank you!"
                                 </p>
                                 <p>- Susan B.</p>
                             </div>
@@ -290,7 +369,10 @@
                 </div>
             </div>
 
-            <div id="section-services" class="container section">
+            <div id="section-services" class="container-fluid section">
+                <div>
+                    <h1>OUR SERVICES</h1>
+                </div>
                 <div class="row gx-5">
                     <div class="col-sm-12 col-lg-4">
                         <div class="card text-center">
