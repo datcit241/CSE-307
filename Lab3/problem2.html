@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic HTML</title>
+
+    <style>
+        html {
+            padding-inline: 50px;
+            padding-block: 30px;
+            border: 2px solid black;
+        }
+        header p {
+            display: inline-block;
+        }
+        header a {
+            margin-right: 100px;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .nav-link {
+            display: block;
+            padding-block: 10px;
+            padding-inline: 20px;
+        }
+        .nav-link:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#"><img src="" alt="Logo"></a
+        <p>Welcome to Our Web Site</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li class="nav-item"><a href="#" class="nav-link">Nav item 1</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Nav item 2</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Nav item 3</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Nav item 4</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <table border = "1" cellspacing = "0" cellpadding = "5px">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ivan</td>
+                    <td>Ivanov</td>
+                    <td>4.54</td>
+                </tr>
+                <tr>
+                    <td>Petar</td>
+                    <td>Petrov</td>
+                    <td>4.31</td>
+                </tr>
+                <tr>
+                    <td>Kiro</td>
+                    <td>Kirov</td>
+                    <td>4.62</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

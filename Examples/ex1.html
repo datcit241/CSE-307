@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating</title>
+
+    <style>
+        header {
+            background-color: gray;
+            color: white;
+            padding-block: 30px;
+            padding-inline: 10px;
+            clear: both;
+        }
+
+        footer {
+            background-color: gray;
+            color: white;
+            padding-block: 20px;
+            padding-inline: 10px;
+            clear: both;
+        }
+
+        main > div:first-child {
+            width: 25%;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        main > div > div {
+            padding: 5px;
+            background-color: lightblue;
+            color: white;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Header</h1>
+    </header>
+
+    <main>
+        <div>
+            <div>The Flight</div>
+            <div>The City</div>
+            <div>The Island</div>
+            <div>The Food</div>
+        </div>
+
+        <div>
+            <h1>The City</h1>
+            <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+            <p>You will learn more about web layout and responsive web pages in a later chapter.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Footer text</p>
+    </footer>
+</body>
+</html>

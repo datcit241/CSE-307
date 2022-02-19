@@ -1,0 +1,49 @@
+div {
+    background-color: #585958;
+    width: 400px;
+    padding-top: 1px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+.active {
+    display: inline-block;
+    background-color: #70b57a;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+h2 {
+    color: lightgray;
+    font-weight: normal;
+}
+th {
+    color: white;
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    padding-right: 30px;
+}
+.multi-lines-row {
+    display: flex;
+    margin-top: 1em;
+}
+td {
+    color: #fffcb4;
+}
+#name {
+    margin-bottom: 0;
+}
+.no-active {
+    color: #ee101b;
+    font-weight: bold;
+    margin-block: 0;
+}
+.faded-text {
+    color: lightgray;
+}
+.status-not-answered {
+    color: #e16c2e;
+    font-weight: bold;
+}
