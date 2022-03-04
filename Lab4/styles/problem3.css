@@ -1,0 +1,56 @@
+.container {
+    background-color: #eeeeee;
+    border-radius: 10px;
+    width: 460px;
+    padding-inline: 10px;
+    padding-top: 1px;
+    padding-bottom: 30px;
+}
+.container > p {
+    font-size: 18px;
+}
+.row {
+    background-color: white;
+    display: flex;
+    padding: 15px;
+    border: 2px solid lightgray;
+    margin-top: 40px;
+}
+span {
+    font-weight: bold;
+}
+.col-img > img {
+    width: 160px;
+}
+.col-right {
+    padding-left: 15px;
+}
+.col-right > p {
+    margin-top: 0px;
+    padding-right: 25px;
+}
+.btn-group {
+    display: flex;
+    justify-content: flex-end;
+}
+button {
+    position: relative;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    margin: 1px;
+}
+button:hover {
+    cursor: pointer;
+}
+button > img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+button > p {
+    position: absolute;
+    bottom: -1px;
+    left: 30px;
+    color: white;
+}

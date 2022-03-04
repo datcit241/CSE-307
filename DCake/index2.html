@@ -51,8 +51,8 @@
                     padding-left: 50px;
                 }
                 .navbar-expand-lg .navbar-nav .nav-link {
-                    padding-right: 1.5rem;
-                    padding-left: 1.5rem;
+                    /* padding-right: 1.5rem; */
+                    /* padding-left: 1.5rem; */
                 }
                 #section-price .row div:nth-child(odd) {
                     background-color: #f8f4f4;
@@ -163,7 +163,7 @@
                 color: black;
             }
             .carousel-item > img {
-                height: 200px;
+                height: 250px;
             }
             #section-services {
                 padding-top: 60px;
@@ -252,6 +252,18 @@
                 border-radius: 10px;
                 box-shadow: 0px 4px red;
             }
+            #section-contact {
+                text-align: center;
+            }
+            #section-contact input {
+                width: 100%;
+            }
+            #section-contact input, #section-contact textarea {
+                margin-block: 5px;
+            }
+            #section-contact img {
+                width: 100%;
+            }
         </style>
     </head>
     <body>
@@ -320,22 +332,22 @@
                                 </ul>
                             </li>
                             <li id="services" class="nav-item">
-                                <a class="nav-link" href="#">Services</a>
+                                <a class="nav-link" href="#section-services">Services</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Menu</a>
+                                <a class="nav-link" href="#section-menu">Menu</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Prices</a>
+                                <a class="nav-link" href="#section-price">Prices</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gallery</a>
+                                <a class="nav-link" href="#section-gallery">Gallery</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Team</a>
+                                <a class="nav-link" href="#section-team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="#section-contact">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -357,7 +369,7 @@
                             masterpiece! Fresh from D.cake Shop, customised for
                             you.
                         </p>
-                        <a href="#" class="btn btn-primary btn-more"
+                        <a href="#section-menu" class="btn btn-primary btn-more"
                             >Check our menu</a
                         >
                     </div>
@@ -481,7 +493,7 @@
                                 class="d-block w-100"
                                 alt="..."
                             />
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption d-md-block">
                                 <p>
                                     "Everyone is so pleasant! Delicious cookies
                                     and delicious coffee ground the way I like
@@ -496,7 +508,7 @@
                                 class="d-block w-100"
                                 alt="..."
                             />
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption d-md-block">
                                 <p>
                                     "Fantastic experience from order to pick up!
                                     Everyone loved the Princess cake! Thank
@@ -511,7 +523,7 @@
                                 class="d-block w-100"
                                 alt="..."
                             />
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption d-md-block">
                                 <p>
                                     "I just had the princess cake from D.cake
                                     and it changed my life. It is literally a
@@ -700,7 +712,7 @@
                             ends with something sweet, a cake, and people
                             remember. It's all about the memories
                         </p>
-                        <a href="#" class="btn btn-primary btn-more"
+                        <a href="#section-contact" class="btn btn-primary btn-more"
                             >Send us a message</a
                         >
                     </div>
@@ -720,7 +732,7 @@
                         <p><span>30</span>Cupcakes</p>
                         <p>Perfect for Small Events</p>
                         <p>Serves up to 20 people</p>
-                        <a href="#" class="btn btn-primary btn-more">Contact</a>
+                        <a href="#section-contact" class="btn btn-primary btn-more">Contact</a>
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <h3>MEDIUM EVENT</h3>
@@ -730,7 +742,7 @@
                         <p><span>70</span>Cupcakes</p>
                         <p>Perfect for Medium Events</p>
                         <p>Serves up to 50 people</p>
-                        <a href="" class="btn btn-primary btn-more">Contact</a>
+                        <a href="#section-contact" class="btn btn-primary btn-more">Contact</a>
                         <!-- <img src="images/price.png" alt=""> -->
                     </div>
                     <div class="col-lg-4 col-sm-12">
@@ -741,7 +753,7 @@
                         <p><span>130</span>Cupcakes</p>
                         <p>Perfect for Large Events</p>
                         <p>Serves up to 100 people</p>
-                        <a href="#" class="btn btn-primary btn-more">Contact</a>
+                        <a href="#section-contact" class="btn btn-primary btn-more">Contact</a>
                     </div>
                 </div>
             </div>
@@ -800,8 +812,28 @@
                     </div>
                 </div>
             </div>
-        </main>
 
+            <div id="section-contact" class="container-fluid section">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-12">
+                        <h1>CONTACT US</h1>
+                        <h3>Get in touch with us</h3>
+                        <p>ĐHQT Miền Đông +84 334387518</p>
+                        <p id="contact-email">duyen.nguyen.set18@eiu.edu.vn</p>
+                        <form action="#" method="POST">
+                            <input class="form-control" type="text" placeholder="Name">
+                            <input class="form-control" type="email" placeholder="Email">
+                            <input class="form-control" type="text" placeholder="Subject">
+                            <textarea class="form-control" name="message" id="message" cols="80" rows="5" placeholder="Enter your message"></textarea>
+                            <button class="btn btn-primary btn-more" type="submit">Send message</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-5 col-sm-12">
+                        <img src="images/macarons.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </main>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

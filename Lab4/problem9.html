@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial</title>
+    <link rel="stylesheet" href="fontawesome-free-6.0.0-web/css/all.css">
+    <script src="https://kit.fontawesome.com/d06d40c5b8.js" crossorigin="anonymous"></script>
+
+    <style>
+        html {
+            border: 2px solid;
+            background-color: #f1f1f1;
+            padding-bottom: 30px;
+        }
+        body {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .left {
+            order: 0;
+        }
+        main {
+            width: 60%;
+            order: 1;
+            border: 2px solid #a2a2a2;
+            padding-inline: 5px;
+            background-color: white;
+        }
+        .right {
+            order: 2;
+            text-align: center;
+        }
+        .right section {
+            border: 2px solid #a2a2a2;
+        }
+        section > .container {
+            padding-block: 5px;
+        }
+        section h3 {
+            margin-bottom: 5px;
+        }
+        .btn-blue-gradiant {
+            color: #10c4fc;
+            background: rgb(147,212,247);
+            background: linear-gradient(180deg, rgba(147,212,247,1) 0%, rgba(193,231,250,1) 10%, rgba(193,231,250,1) 90%, rgba(147,212,247,1) 100%);
+            padding-block: 5px;
+            padding-inline: 10px;
+            border: 1px solid #7caccc;
+        }
+        a:link, a:visited {
+            color: #9c2424;
+
+        }
+        h3 {
+            background-color: #808080;
+            color: white;
+            padding-inline: 5px;
+            margin-block: 0;
+        }
+        .row {
+            display: flex;
+            align-items: flex-start;
+        }
+        .row img {
+            margin-right: 20px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        button {
+            background-color: transparent;
+        }
+        .btn-prev {
+            padding-right: 30px;
+        }
+        .btn-prev:before {
+            font-family: FontAwesome;
+            content: "\f0d9";
+            margin-right: 25px;
+        }
+        .btn-next {
+            padding-left: 30px;
+        }
+        .btn-next:after {
+            font-family: FontAwesome;
+            content: "\f0da";
+            margin-left: 25px;
+        }
+        aside {
+            width: 20%;
+        }
+        .left {
+            padding-top: 30px;
+            padding-left: 5px;
+        }
+        .home {
+            font-weight: bold;
+        }
+        ul ul li > a:before {
+            content: "CSS ";
+        }
+        ul {
+            padding: 0;
+        }
+        ul a, .home {
+            text-decoration: none;
+        }
+        u a:link, ul a:visited, .home:link, .home:visited {
+            color: black;
+        }
+        .parent > li > a {
+            font-weight: bold;
+            color: #940c0c;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <main>
+        <h1>CSS Tutorial</h1>
+        <button class="btn-prev">Previous</button>
+        <button class="btn-next">Next</button>
+        <hr>
+        <section id="tutorial">
+            <h3>CSS Tutorial</h3>
+            <div class="row">
+                <div>
+                    <img src="images/logocss.gif" alt="">
+                </div>
+                <div class="col">
+                    <b>
+                        <p>Save a lot of work with CSS!</p>
+                        <p>In our CSS tutorial you will learn how to use CSS to control the style and layout of multiple Web pages all at once.</p>
+                    </b>
+                    <p><a href="#">Start learning CSS!</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="left">
+        <a class="home" href="#"><i class="fa-solid fa-house-chimney"></i> HOME</a>
+        <ul class="parent" type="none">
+            <li>
+                <a href="#">CSS Basic</a>
+                <ul type="none">
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">Syntax</a></li>
+                    <li><a href="#">How to</a></li>
+                    <li><a href="#">Background</a></li>
+                    <li><a href="#">Text</a></li>
+                    <li><a href="#">Font</a></li>
+                    <li><a href="#">Border</a></li>
+                    <li><a href="#">Outline</a></li>
+                    <li><a href="#">Margin</a></li>
+                    <li><a href="#">Padding</a></li>
+                    <li><a href="#">List</a></li>
+                    <li><a href="#">Table</a></li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <aside class="right">
+        <section>
+            <h3>SITE SEARCH</h3>
+            <div class="container">
+                <input type="text">
+                <button>...</button>
+                <br>
+                <a href="#">About W3Shools</a>
+                <br>
+                <a href="#">W3Schools Forum</a>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <button class="btn-blue-gradiant">25+ Styles!</button>
+                <br>
+                <a href="#">Dynamic button image generation</a>
+            </div>
+        </section>
+        <section>
+            <h3>WEB HOSTING</h3>
+            <div class="container">
+                <a href="#">$15 Domain Name Registration Save $20 / year!</a>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <a href="#">UK Domain Names</a>
+                <a href="#">UK Web Hosting</a>
+                <a href="#">Alojamiento Web</a>
+            </div>
+        </section>
+    </aside>
+</body>
+</html>
