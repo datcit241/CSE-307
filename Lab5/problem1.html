@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violet on Wednesday</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @media (max-width: 991px) {
+            .input-group {
+                margin-inline: auto;
+            }
+            .copy-right-text {
+                display: block;
+                text-align: left;
+            }
+            row row .col-sm-6 {
+                width: 50%;
+            }
+            header .media {
+                justify-content: center;
+            }
+        }
+        @media (min-width: 992px) {
+            .navbar-expand-lg .navbar-nav .nav-link {
+                padding: 1em;
+            }
+            .copy-right-text {
+                display: inline;
+                text-align: center;
+            }
+        }
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+        .top {
+            background-color: #2d3e50;
+            color: white;
+            padding-block: 10px;
+        }
+        .top p {
+            margin: 0;
+        }
+        .top p span {
+            font-weight: bold;
+        }
+        .top a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .top a:link {
+            color: white;
+        }
+        .top a:visited {
+            color: white;
+        }
+        .top .hotline:before {
+            font-family: FontAwesome;
+            content: "\f095  ";
+        }
+        .top .address:before {
+            font-family: FontAwesome;
+            content: "\f3c5  ";
+        }
+        .mid {
+            margin-block: 30px;
+        }
+        .mid img {
+            width: 449px;
+        }
+        .mid .input-group {
+            border: 1px solid gray;
+            width: 90%;
+        }
+        .mid .input-group input {
+            border: none;
+        }
+        .mid .input-group input:focus {
+            outline: none;
+        }
+        .mid .input-group button {
+            background-color: transparent;
+            border: none;
+        }
+        .media p {
+            margin: 0;
+        }
+        .mid a:link, .mid a:visited {
+            color: black;
+            text-decoration: none;
+        }
+        header .media-left {
+            display: inline-block;
+            background-color: #e2402d;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+        }
+        .media-body {
+            display: inline-block;
+        }
+        .media-body p:first-child {
+            font-size: 12px;
+        }
+        .price {
+            color: #e2402d;
+            font-weight: bold;
+        }
+        nav {
+            background-color: #652d92;
+            padding: 0 !important;
+        }
+        .dropdown-toggle::after {
+            display: none;
+        }
+        .dropdown-item {
+            color: #652d92;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            color: white;
+            background-color: #652d92;
+        }
+        .active {
+            background-color: #7939a9;
+        }
+        .nav-link {
+            padding-inline: 1em;
+            color: white !important;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            background-color: #7939a9;
+        }
+        .nav-title {
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* main */
+        .historical-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: gray;
+            text-decoration: line-through;
+            margin: 0;
+        }
+        main .code {
+            color: #7939a9;
+            font-weight: bold;
+        }
+        main .card {
+            position: relative;
+        }
+        main .card::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            content: "-10%";
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+            font-size: 12px; 
+            font-weight: bold;
+        }
+        main .card-body {
+            background-color: #f8f8f8;
+        }
+        .section-title {
+            background-color: #f8f8f8;
+            color: #343e49;
+            padding: 10px;
+            border-left: 5px solid #7939a9;
+            border-block: 1px dashed lightgray;
+            margin-block: 30px;
+        }
+        .section-title * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* aside */
+        aside .card {
+            border: none;
+            background-color: transparent;
+        }
+        #history .row {
+            background-color: #f8f8f8;
+            border: 1px solid lightgray;
+            margin: 0;
+        }
+        #history .col-4, #news .col-5 {
+            padding-left: 0;
+        }
+        #history .hidden {
+            color: transparent;
+        }
+        #history .card-body, #news .card-body {
+            padding-bottom: 0;
+            padding-left: 0;
+        }
+        #history .card-title {
+            margin-bottom: 32px;
+        }
+        #history hr, #news hr {
+            border: none;
+            background-color: lightgray;
+        }
+        #history img, #news img {
+            height: 100%;
+            object-fit: cover;
+        }
+        #news .date {
+            font-size: 16px;
+            color: gray;
+        }
+        #news .date:before {
+            font-family: FontAwesome;
+            content: "\f073";
+            margin-right: 5px;
+        }
+
+
+        /* footer */
+        hr {
+            border: none;
+            border-top: 3px solid #7939a9;
+            opacity: 1;
+            margin-block: 30px;
+        }
+        footer .row  > div:first-child .media-left {
+            transform: scaleX(-1);
+        }
+        footer .media-left {
+            color: white;
+            background-color: #7939a9;
+            width: 80px;
+            height: 80px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 80px;
+            margin-right: 15px;
+            padding: 0;
+        }
+        footer .media-right {
+            padding-right: 30px;
+        }
+        footer .media-title {
+            color: #652d92;
+            font-weight: bold;
+        }
+        footer ul {
+            padding: 0;
+        }
+        footer ul a {
+            text-decoration: none;
+        }
+        footer ul a:link, footer ul a:visited {
+            color: black;
+        }
+        .main {
+            padding-block: 50px;
+        }
+        .main hr {
+            width: 50px;
+            margin-top: 15px;
+        }
+        .main h5 {
+            font-weight: bold;
+        }
+        table {
+            width: 80%;
+        }
+        th {
+            vertical-align: top;
+        }
+        .contact-icon-group * {
+            margin-right: 5px;
+        }
+        .contact-icon-group a:link, .contact-icon-group a:visited {
+            text-decoration: none;
+            color: black;
+        }
+        footer > .container-fluid:last-child {
+            padding-block: 10px;
+            background-color: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <p class="hotline">Hotline: <span>0968 159 239</span> - <span>08.38 409 092</span></p>
+                    </div>
+                    <div class="col-lg-5 col-sm-12">
+                        <p class="address">Địa chỉ: <span>01 Nguyễn Cửu Vân, Bình Thạnh, TP.HCM</span></p>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <p>
+                            <a href="#">Đăng nhập</a>
+                            hoặc
+                            <a href="#">Tạo tài khoản mới</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mid">
+            <div class="container">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-6 col-sm-12">
+                        <a href="#">
+                            <img src="images/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <form action="#" class="d-flex">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-describedby="btn-search">
+                                <button id="btn-search" type="button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <a href="#">
+                            <div class="media d-flex align-items-center">
+                                <span class="media-left">
+                                    <i class="media-object fa-solid fa-cart-shopping"></i>
+                                </span>
+                                <div class="media-body">
+                                    <p>3 sản phẩm</p>
+                                    <p class="price">1,289,000 đ</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container justify-content-start">
+                    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <span class="nav-title d-lg-none">Danh mục sản phẩm</span>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">TRANG CHỦ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">HOA SINH NHẬT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">HOA TÌNH YÊU</a>
+                            </li
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">HOA CHÚC MỪNG</a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">HOA VĂN PHÒNG</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">CHỦ ĐỀ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    THIẾT KẾ 
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">HOA CÀNH</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA BÓ</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA LĂNG</a></li
+                                    <li><a class="dropdown-item" href="#">HOA GIỎ</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA HỘP</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA BÌNH</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA KÊ</a></li>
+                                    <li><a class="dropdown-item" href="#">HOA CHẬU</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">THỂ LOẠI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">QUÀ TẶNG</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row gx-4">
+            <main class="col-lg-8 col-sm-12">
+                <section>
+                    <div class="section-title">
+                        <h4>SẢN PHẨM KHUYẾN MÃI</h4>
+                    </div>
+                    <div class="row row-cols-sm-4 row-cols-2 gy-4">
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/i1N6LtBsx3c2Ha87vV2w5VyWHLJNCwM7RHtTnh3P.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Khai trương hồng phát 2</h5>
+                                    <p class="code card-text">VS035</p>
+                                    <p class="historical-price card-text">890,000 đ</p>
+                                    <p class="price card-text">807,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/H2EEDDxCkRfRI0ArpMgLJ4qElWReQruC78DZXFP2.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tình bền lâu</h5>
+                                    <p class="code card-text">VS002</p>
+                                    <p class="historical-price card-text">410,000 đ</p>
+                                    <p class="price card-text">300,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/ApjKg7LVkLk6V0aWAbzGfzCOWfZ66JNvDkuNnAmL.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ngày nắng</h5>
+                                    <p class="code card-text">VS005</p>
+                                    <p class="historical-price card-text">550,000 đ</p>
+                                    <p class="price card-text">470,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/RnauN730HlZku8F5Y366CLm9g8dfT38K6Ce4zzN9.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Chúc mừng tốt nghiệp</h5>
+                                    <p class="code card-text">VS004</p>
+                                    <p class="historical-price card-text">450,000 đ</p>
+                                    <p class="price card-text">350,000 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/b0Ys3ScVvXmgH5QJ2DFGZGpmpvCZewKNUX1OcSwl.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ngày nắng</h5>
+                                    <p class="code card-text">VS005</p>
+                                    <p class="historical-price card-text">550,000 đ</p>
+                                    <p class="price card-text">470,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/ncXFptToPpYx8y4gGqh6WmRVvJVJPt2JOk64Vg9t.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Chúc mừng tốt nghiệp</h5>
+                                    <p class="code card-text">VS004</p>
+                                    <p class="historical-price card-text">450,000 đ</p>
+                                    <p class="price card-text">350,000 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/qmThNyZT93P2W7veEuomZ7tnbMdnrJVBbxXeClEi.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Khai trương hồng phát 2</h5>
+                                    <p class="code card-text">VS035</p>
+                                    <p class="historical-price card-text">890,000 đ</p>
+                                    <p class="price card-text">807,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <img src="https://assets.flowerstore.vn/uploads/products/photos/b1iYYUMCjHP4PaiLFAGpR4FrunhUeUfIC9B3qhw9.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tình bền lâu</h5>
+                                    <p class="code card-text">VS002</p>
+                                    <p class="historical-price card-text">410,000 đ</p>
+                                    <p class="price card-text">300,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="col-lg-4 col-sm-12">
+                <section id="history">
+                    <div class="section-title">
+                        <h4>SẨN PHẨM VỪA XEM</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://assets.flowerstore.vn/uploads/products/photos/RnauN730HlZku8F5Y366CLm9g8dfT38K6Ce4zzN9.jpeg" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Chúc mừng tốt nghiệp</h5>
+                                    <p class="historical-price hidden">450,000 đ</p>
+                                    <p class="price card-text">350,000 đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://assets.flowerstore.vn/uploads/products/photos/H2EEDDxCkRfRI0ArpMgLJ4qElWReQruC78DZXFP2.jpeg" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tình bền lâu</h5>
+                                    <p class="historical-price">450,000 đ</p>
+                                    <p class="price card-text">350,000 đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://assets.flowerstore.vn/uploads/products/photos/ApjKg7LVkLk6V0aWAbzGfzCOWfZ66JNvDkuNnAmL.jpeg" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ngày nắng</h5>
+                                    <p class="historical-price hidden">450,000 đ</p>
+                                    <p class="price card-text">470,500 đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                </section>
+
+                <section id="news">
+                    <h4 class="section-title">TIN TỨC<h4/>
+                    
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://cdn.vox-cdn.com/thumbor/7WKuZk3jAb3uWzwgtRGKTR0VhE4=/0x0:4032x3024/1200x800/filters:focal(1694x1190:2338x1834)/cdn.vox-cdn.com/uploads/chorus_image/image/66290775/GettyImages_1129073013.0.jpg" alt="">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Hoa tươi VOW khuyến mãi gói event tưng bừng</h5>
+                                    <p class="date">18/07/2015</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://imageresizer.static9.net.au/KySVjY8lh3_Lqpf5ZdMX58_m5k8=/1200x900/https%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FNetwork%2FImages%2F2017%2F04%2F25%2F15%2F59%2F170425coach_flowers.jpg" alt="">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ý nghĩa các loại hoa trong năm</h5>
+                                    <p class="date">17/07/2015</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://dyvdnmp0itmzz.cloudfront.net/wp-content/uploads/2021/04/11154654/JamJar-Flowers-Sitting-In-Nature-The-Garden-Museum-British-Flowers-Week-2021-Rona-Wheeldon-HR-1.jpg" alt="">
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Violet on Wednesday tuyển nhân viên</h5>
+                                    <p class="date">17/07/2015</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="row gy-3">
+                <div class="col-lg-4 col-sm-12">
+                    <div class="media d-flex align-items-center">
+                        <span class="media-left">
+                            <i class="media-object fa-solid fa-truck"></i>
+                        </span>
+                        <div class="media-right">
+                            <h6 class="media-title">GIAO HÀNG MIỄN PHÍ</h6>
+                            <p>Chúng tôi giao hàng miễn phí trong nội thành</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="media d-flex align-items-center">
+                        <span class="media-left">
+                            <i class="fa-solid fa-comments"></i>
+                        </span>
+                        <div class="media-right">
+                            <h6 class="media-title">TƯ VẤN TẬN TÂM</h6>
+                            <p>Mang đến cho Quý Khách những sản phẩm tốt nhất</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="media d-flex align-items-center">
+                        <span class="media-left">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </span>
+                        <div class="media-right">
+                            <h6 class="media-title">GIÁ THÀNH TỐT NHẤT</h6>
+                            <p>Cam kết giá thành & dịch vụ sau bán hàng tốt nhất</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="main bg-light">
+            <div class="container">
+                <div class="row gy-3">
+                    <div class="col-lg-3 col-sm-12">
+                        <h5>HỆ THỐNG</h5>
+                        <hr>
+                        <ul type="none">
+                            <li><a href="#">Hoa sinh nhật</a></li>
+                            <li><a href="">Hoa cưới</a></li>
+                            <li><a href="">Hoa chúc mừng</a></li>
+                            <li><a href="">Chủ đề</a></li>
+                            <li><a href="">Thiết kế</a></li>
+                            <li><a href="">Hoa theo thể loại</a></li>
+                            <li><a href="">Quà tặng</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <h5>CÔNG TY</h5>
+                        <hr>
+                        <ul type="none">
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="">Tin tức</a></li>
+                            <li><a href="">Tuyển dụng</a></li>
+                            <li><a href="">Chính sách thành viên</a></li>
+                            <li><a href="">Chương trình khuyến mãi</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <h5>THÔNG TIN</h5>
+                        <hr>
+                        <ul type="none">
+                            <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                            <li><a href="#">Phương thức thanh toán</a></li>
+                            <li><a href="#">Điều khoản mua hàng</a></li>
+                            <li><a href="#">Phí vận chuyển</a></li>
+                            <li><a href="#">Ý nghĩa các loài hoa</a></li>
+                            <li><a href="#">Chăm sóc và bảo quản hoa</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <h5>VIOLET ON WEDNESDAY</h5>
+                        <hr>
+                        <table>
+                            <colgroup>
+                                <col width="40%">
+                            </colgroup>
+                            <tr>
+                                <th>Địa chỉ</th>
+                                <td>01 Nguyễn Cửu Vân Bình Thạnh, TP.HCM</td>
+                            </tr>
+                            <tr>
+                                <th>Điện thoại</th>
+                                <td>08 38 40 90 92</td>
+                            </tr>
+                            <tr>
+                                <th>Hotline</th>
+                                <td>0968 159 239</td>
+                            </tr>
+                        </table>
+                        <b>Mọi ý kiến xin vui lòng gửi về</b>
+                        <p>support@violetonwednesday.com</p>
+                        <div class="contact-icon-group">
+                            <a href="#">
+                                <i class="fa-brands fa-facebook-square"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-instagram-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="text-align: center;">
+            <div class="copy-right-text">&copy; 2015 Violet on Wednesday Store.</div>
+            <div class="copy-right-text">All Rights Reserved.</div>
+            <div class="copy-right-text">Sponsored by Letsop Solutions.</div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
