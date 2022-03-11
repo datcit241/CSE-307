@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Range of numbers</title>
+</head>
+<body>
+    <fieldset>
+        <legend>List of numbers between 1 and </legend>
+        <input id="input" type="text">
+        <button id="btn-list" type = button>List</button>
+        <p id="list"></p>
+    </fieldset>
+
+    <script>
+        let button = document.getElementById("btn-list");
+
+        button.onclick = function() {
+            let max = document.getElementById("input").value;
+            let list = document.getElementById("list");
+
+            if (isNaN(max)) {
+                list.innerHTML = 'Hong pé ơi!';
+            } else {
+                let string = "";
+                for (let i = 1; i <= max; i++) {
+                    string += i + " ";
+                }
+                list.innerHTML = string;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Analysis</title>
+</head>
+<body>
+    
+    <script>
+        function analyze(arr) {
+            let min = arr[0], max = arr[0], sum = 0.0;
+            for (let element of arr) {
+                sum += element;
+                if (element > max) {
+                    max = element;
+                } else if (element < min) {
+                    min = element;
+                }
+            }
+            console.log('min =', min.toFixed(2));
+            console.log('max =', max.toFixed(2))
+            console.log('sum =', sum.toFixed(2));
+            console.log('avg =', (sum / arr.length).toFixed(2));
+        }
+        analyze([3, 6]);
+    </script>
+</body>
+</html>

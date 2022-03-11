@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager</title>
+</head>
+<body>
+    
+    <script>
+        let manager = {
+            products : [],
+            addTail(id, name, quantity, price, image) {
+                this.products.push(this.genProduct(id, name, quantity, price, image));
+            },
+
+            addHead(id, name, quantity, price, image) {
+                this.products.unshift(this.genProduct(id, name, quantity, price, image));
+            },
+
+            sort() {
+                this.products.sort((o1, o2) => o1.compare(o2));
+            },
+
+            getProductByName(name) {
+                let index = this.products.map(product => product.name).indexOf(name);
+                return this.products[index];
+            },
+
+            removeById(id) {
+                let index = this.products.map(product => product.id).indexOf(id);
+                ~index && this.products.splice(index, 1);
+            },
+
+            genProduct(id, name, quantity, price, image) {
+                let obj = {
+                    id : id,
+                    name : name,
+                    quantity : quantity,
+                    price : price,
+                    image : image,
+                    compare(that) {
+                        if (this.name < that.name) return -1;
+                        if (this.name > that.name) return 1;
+                        return 0;
+                    }
+                };
+                return obj;
+            },
+        }
+        
+        manager.addTail('1', 'bbc', 2, 2, 'images/a.png');
+        manager.addTail('2', 'abc', 2, 2, 'images/b.png');
+        manager.addTail('3', 'cbc', 2, 2, 'images/c.png');
+
+        console.log(manager.getProductByName('abc'));
+        manager.removeById('3');
+
+        manager.sort();
+        console.log(manager.products)
+    </script>
+</body>
+</html>

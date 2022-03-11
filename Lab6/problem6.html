@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Checker</title>
+    <style>
+        fieldset {
+            width: 50%;
+            margin-inline: auto;
+            padding-top: 10px;
+            padding-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Prime checker</legend>
+        <input id="victim" type="text">
+        <button id="check-button" type="button">Check</button>
+        <h1 id="result"></h1>
+    </fieldset>
+    
+    <script>
+        let primes = [];
+        let notPrimes = new Array(46338);
+
+        for (let i = 2, len = notPrimes.length, sqrt = Math.sqrt(len); i < sqrt; i++) {
+            if (!notPrimes[i]) {
+                for (let j = i * i; j < len; j += i) {
+                    notPrimes[j] = true;
+                }
+            }
+        }
+
+        primes.push(2);
+
+        for (let i = 3, len = notPrimes.length; i < len; i += 2) {
+            if (!notPrimes[i]) {
+                primes.push(i);
+            }
+        }
+
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let prime of primes) {
+                if (prime * prime > num) {
+                    return true;
+                } else if (num % prime == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        document.getElementById('check-button').onclick = function() {
+            let num = document.getElementById('victim').value;
+            let result = document.getElementById('result');
+
+            if (isNaN(num)) {
+                result.innerHTML = 'Is that even a number?';
+            } else if (num < 0) {
+                result.innerHTML = 'Positive number only, dude';
+            } else if (isPrime(num)) {
+                result.innerHTML = 'Great it\'s a prime!!!';
+            } else {
+                result.innerHTML = 'Nope, try another number';
+            }
+        };
+
+        console.log(isPrime(2147483647));
+        console.log(isPrime(2147483637))
+    </script>
+</body>
+</html>

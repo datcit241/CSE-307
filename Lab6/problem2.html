@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing numbers</title>
+    <style>
+        table, th, td {
+            border: 1px solid #dfe2e5;
+        }
+        td:not(td:first-child) {
+            text-align: center;
+        }
+        tr:nth-child(odd):not(tr:first-child) {
+            background-color: #f6f8fa;
+        }
+        td:hover, th:hover {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table cellspacing="0" cellpadding="5px">
+        <tr>
+            <th>str</th>
+            <th>parseInt(str)</th>
+            <th>parseFloat(str)</th>
+            <th>Number(str)</th>
+            <th>+str</th>
+            <th>str | 0</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    
+    <script>
+        let cells = document.getElementsByTagName("td");
+        let strings = ['1234', '1238abc', '0.15', '3.14ivan', 'Infinity', '99999999999999999999'];
+
+        let index = 0;
+        for (let string of strings) {
+            cells[index++].innerHTML = '\'' + string + '\'';
+            cells[index++].innerHTML = parseInt(string);
+            cells[index++].innerHTML = parseFloat(string);
+            cells[index++].innerHTML = Number(string);
+            cells[index++].innerHTML = +string;
+            cells[index++].innerHTML = string | 0;
+        }
+    </script>
+</body>
+</html>
