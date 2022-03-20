@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progress Bar</title>
+    <style>
+        h3 {
+        }
+        #progress-bar {
+            background-color: lightgray;
+            width: 500px;
+            height: 50px;
+            margin-bottom: 18.720px;
+        }
+        #progress {
+            width: 0px;
+            background-color: green;
+            height: 100%;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h3>JavaScript Progress Bar / Performance Test</h3>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+        <p id="result"></p>
+        <button id="btn-start">Test</button>
+    </div>
+
+    <script>
+        document.querySelector('#btn-start').addEventListener('click', function() {
+            let progress = document.getElementById('progress'), result = document.getElementById('result');
+            let percent = 0, total = 0, increment, performance = Math.random() * 3 | 0;
+            console.log(performance);
+
+            let performances = [function() {
+                return Math.random() * 2 + 2
+            }, function() {
+                return Math.random() * 4 + 2;
+            }, function() {
+                return Math.random() * 8 + 2;
+            }];
+
+            let intervals = [function() {
+                return Math.random() * 500 + 500;
+            }, function() {
+                return Math.random() * 400 + 300;
+            }, function() {
+                return Math.random() * 500;
+            }];
+
+            function getPerformance() {
+                switch (performance) {
+                    case 0: return ' (low)';
+                    case 1: return ' (average)';
+                    case 2: return ' (high)';
+                }
+            }
+
+            let timer = setInterval(function() {
+                total += increment / 1000;
+                if ((percent += performances[performance]()) <= 100) {
+                    progress.style.width = (percent | 0) + '%';
+                    progress.innerText = (percent | 0) + '%';
+                } else {
+                    progress.style.width = '100%';
+                    progress.innerText = '100%';
+                    clearInterval(timer);
+                    result.innerText = 'Your benchmark score is ' + (total + Math.random() * 2 - 1).toFixed(3) + getPerformance() + ' (lower is better)';
+
+                    setTimeout(function() {
+                        window.alert('Congratulations, you have just wasted ' + (total + 2) + " seconds in your precious lifetime");
+                    }, 2000);
+                }
+            }, increment = intervals[performance]());
+
+        });
+    </script>
+</body>
+</html>

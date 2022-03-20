@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+    <div style='font-family: Arial; font-size: 14px;color:blue;text-align: left;'>Book 3 - Card No.: {{№}}</div><br>
+
+    <div style='font-family: Arial; font-size: 20px;text-align: center;'>{{IMG}}</div>
+
+    <div id='suggestion' style='font-family: Arial; font-size: 26px;color:red;text-align: left;'>{{Suggestion}}</div><br/>
+
+    <input id="input" type="text">
+    <div id='word' style='display: none'>knowledge</div>
+    <button id="btn-search">Search</button>
+
+    <div style='font-family: Arial; font-size: 20px;text-align: center;'>{{cloze:Explanation}}</div></br>
+
+    <div style='font-family: Arial; font-size: 20px;color:gray;text-align: right;'>{{Short Vietnamese}}</div>
+
+    <div style='font-family: Arial; font-size: 22px;text-align: left;'>{{type:cloze:Explanation}}</div>
+
+    <script>
+        document.getElementById('btn-search').addEventListener('click', function() {
+            let keyword = document.getElementById('input').value;
+            $.get("https://www.ldoceonline.com/dictionary/" + keyword, function(data){
+                let html = $(data).find('.HYPHENATION').html();
+                let string = '';
+
+                if (!html) {
+                    string += keyword.at(0);
+
+                    for (let i = 1, len = keyword.length; i < len; i++) {
+                        if (keyword.at(i) >= 'A' && keyword.at(i) <= 'Z') {
+                            string += keyword.at(i);
+                        } else {
+                            string += '_ ';
+                        }
+                    }
+                } else {
+                    let strings = html.split('‧');
+
+                    for (let str of strings) {
+                        string += str.at(0);
+
+                        for (let i = 1, len = str.length; i < len; i++) {
+                            string += '_ ';
+                        }
+                    }
+                }
+
+
+                document.getElementById('suggestion').innerHTML = JSON.stringify(string);
+            });
+        });
+
+    </script>
+
+    <script>
+    </script>
+</body>
+</html>
