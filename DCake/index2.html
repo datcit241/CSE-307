@@ -12,20 +12,20 @@
 <!--        FontAwesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
+<!--        jquery-->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Paytone+One&display=swap" rel="stylesheet">
     
         <script>
             $( function() {
                 $( "#tabs" ).tabs();
             } );
         </script>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet"/>
-        
 
         <style>
             @media (max-width: 991px) {
@@ -48,11 +48,14 @@
                 #section-price .row div {
                     margin-block: 30px;
                 }
+                html {
+                    /*width: 488px;*/
+                }
             }
             
             /*Desktop*/
             @media (min-width: 992px) {
-                .section:not(#section-gallery, #section-menu) {
+                .section:not(#section-gallery, #section-menu, #section-carousel-gallery) {
                     padding-inline: 15%;
                 }
                 #section-gallery {
@@ -64,8 +67,8 @@
                     padding-left: 50px;
                 }
                 .navbar-expand-lg .navbar-nav .nav-link {
-                    /* padding-right: 1.5rem; */
-                    /* padding-left: 1.5rem; */
+                     padding-right: 1.5rem;
+                     padding-left: 1.5rem;
                 }
                 #section-menu #tabs {
                     margin-inline: 15%;
@@ -83,7 +86,6 @@
                     border: 2px dashed #c694ce;
                 }
             }
-            
             .go-top {
                 position: fixed;
                 bottom: 20px;
@@ -117,7 +119,7 @@
                 color: white !important;
                 font-weight: bold;
                 align-items: center;
-                height: 80px;
+                height: 70px;
                 /* padding-inline: 200px */
             }
             .nav-item > .nav-link:hover {
@@ -134,13 +136,57 @@
                 margin-left: 10%;
             }
             #logo {
-                height: 70px;
+                height: 60px;
             }
-
+            body {
+                position: relative;
+            }
+            
+            /*main*/
             main {
+                margin-top: 70px;
+            }
+            img {
+                max-width: 100%;
+            }
+            h1, h3, h5 {
+                font-family: 'Paytone One', sans-serif;
+                text-align: center;
+            }
+            .horizontal-break {
+                position: relative;
+                width: 125px;
+                margin-inline: auto;
+                border-top: 1px solid black;
+                
+                margin-top: 20px;
+                margin-bottom: 25px;
+            }
+            .horizontal-break img {
                 position: absolute;
-                top: 80px;
-                /* width: 100%; */
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+
+                width: 25px;
+            }
+            .hr-white {
+                border-top: 1px solid white;
+            }
+            
+            /*carousel gallery*/
+            #section-carousel-gallery {
+                position: relative;
+                padding: 0;
+            }
+            #section-carousel-gallery .slide-down {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-30%);
+                
+                margin-inline: auto;
+                width: 62%;
             }
             
             /*offer us*/
@@ -153,6 +199,7 @@
                 margin-top: 100px;
                 margin-bottom: 30px;
                 border: 2px dotted #f6e0e3;
+                padding-inline: 10px;
             }
             
             /*about us*/
@@ -161,20 +208,20 @@
                 padding-top: 40px;
                 padding-bottom: 50px;
             }
-            .section h1:first-child {
-                font-family: "Roboto";
+            #section-about h3 {
                 text-align: center;
+                color: #D1334C;
             }
             #section-about p span {
+                font-family: 'Paytone One', sans-serif;
                 font-size: 18px;
                 font-weight: bold;
-                font-family: "Roboto";
             }
             #section-about .row {
                 text-align: center;
                 font-weight: bold;
             }
-            #section-about img {
+            #section-about img:not(.horizontal-break img) {
                 width: 25%;
             }
             
@@ -207,11 +254,14 @@
                 /* width: 75%; */
                 margin-inline: auto;
             }
+            .carousel-caption > p:first-child {
+                font-family: 'Times New Roman';
+            }
             .carousel-caption > p:nth-child(2) {
                 margin-top: -15px;
                 color: black;
             }
-            .carousel-item > img {
+            #section-feedback .carousel-item > img {
                 height: 250px;
             }
             
@@ -258,6 +308,9 @@
                 background-color: #f8e4e4;
                 padding-top: 50px;
             }
+            #section-menu .image-frame, #section-menu .option-title {
+                font-family: 'Gloria Hallelujah', cursive;
+            }
             .cakes-100 img {
                 width: 100%;
                 object-fit: cover;
@@ -271,7 +324,8 @@
                 background-color: transparent;
             }
             #tabs {
-                margin-bottom: 30px;
+                margin-top: 50px;
+                margin-bottom: 40px;
             }
             #tabs li {
                 margin-inline: 10px;
@@ -331,12 +385,13 @@
             .image-frame p {
                 margin-block: 15px;
                 text-align: center;
-                
+                font-size: 20px;
             }
             .menu-item-title {
                 position: absolute;
                 top: 100px;
-                left: 400px;
+                left: 50%;
+                transform: translateX(-40%);
                 z-index: 10;
                 
                 color: white;
@@ -371,17 +426,22 @@
             }
             
             /*prices*/
+            #section-price {
+                padding-top: 100px;
+            }
+            #section-price .row {
+                margin-top: 30px;
+            }
             #section-price .row div {
                 border-radius: 20px;
                 text-align: center;
                 padding-top: 20px;
                 padding-inline: 0px;
             }
-
             #section-price .row div p:first-of-type {
+                font-family: 'Paytone One', sans-serif;
                 color: #c694ce;
-                font-weight: bold;
-                font-size: 30px;
+                font-size: 40px;
             }
             #section-price .row div span {
                 font-weight: bold;
@@ -404,7 +464,7 @@
             }
             
             /*gallery*/
-            #section-gallery img {
+            #section-gallery img:not(.horizontal-break img) {
                 width: 100%;
                 margin-block: 15px;
                 border-radius: 20px;
@@ -412,9 +472,15 @@
             #section-gallery {
                 margin-block: 50px;
             }
+            #section-gallery .row {
+                margin-top: 50px;
+            }
             
             /*team*/
-            #section-team img {
+            #section-team {
+                padding-block: 50px;
+            }
+            #section-team img:not(.horizontal-break img) {
                 margin-block: 20px;
                 width: 100%;
                 border-radius: 10px;
@@ -424,6 +490,11 @@
             /*contact*/
             #section-contact {
                 text-align: center;
+                padding-block: 50px;
+            }
+            #section-contact h3 {
+                margin-bottom: 50px;
+                margin-top: 70px;
             }
             #section-contact input {
                 width: 100%;
@@ -432,8 +503,70 @@
                 margin-block: 5px;
                 border: 2px dashed #c694ce;
             }
-            #section-contact img {
+            #section-contact img:not(.horizontal-break img) {
                 width: 100%;
+            }
+            #section-contact p {
+                color: #6A6A6A;
+                font-weight: bold;
+            }
+            #section-contact i {
+                color:  #E66D7D;
+                margin-right: 10px;
+                margin-left: 20px;
+            }
+            #section-contact #contact-email {
+                color: #E66D7D;
+            }
+            
+            /*footer*/
+            footer {
+                padding-block: 50px;
+                
+                background-color: #C694CE;
+                color: white;
+                
+                text-align: center;
+                
+                outline: 5px dashed #C694CE;
+                /*margin-bottom: 5px;*/
+                border-bottom: 5px dashed white;
+                /*border-top: 5px dashed white;*/
+            }
+            footer img {
+                width: 200px;
+            }
+            footer .social-icons {
+                margin-bottom: 30px;
+            }
+            footer a {
+                display: inline-block;
+
+                width: 50px;
+                height: 50px;
+                
+                font-size: 20px;
+                line-height: 50px;
+                
+                border-radius: 50%;
+                
+                background-color: #e66f7f;
+                color: white;
+                
+                margin-inline: 5px;
+            }
+            footer a:hover {
+                color: white;
+            }
+            footer .col-left {
+                text-align: right;
+            }
+            footer .col-right {
+                text-align: left;
+            }
+            footer hr {
+                width: 250px;
+                opacity: 1;
             }
         </style>
     </head>
@@ -522,6 +655,33 @@
         </header>
 
         <main>
+            <div id="section-carousel-gallery" class="container-fluid section">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/slide1.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down1.png" alt="" class="slide-down">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide2.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down2.png" alt="" class="slide-down">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide3.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down3.png" alt="" class="slide-down">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
             <div id="section-offer" class="container-fluid section">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
@@ -547,6 +707,10 @@
             <div id="section-about" class="container-fluid section">
                 <div>
                     <h1>ABOUT US</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
 
                     <h3>Baking Delicious cakes since 1980</h3>
                     <p>
@@ -623,6 +787,10 @@
             <div id="section-feedback" class="container-fluid section">
                 <div>
                     <h1>WHAT OUR CLIENTS SAY</h1>
+    
+                    <div class="horizontal-break hr-white">
+                        <img src="images/cupcake-white.svg" alt="">
+                    </div>
                 </div>
                 <div
                     id="carouselExampleCaptions"
@@ -729,6 +897,10 @@
             <div id="section-services" class="container-fluid section">
                 <div>
                     <h1>OUR SERVICES</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
                 </div>
                 <div class="row gx-5 gy-4">
                     <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
@@ -868,6 +1040,10 @@
             <div id="section-menu" class="container-fluid section">
                 <div>
                     <h1>OUR MENU</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
                 </div>
                 <div id="tabs">
                     <ul>
@@ -1150,6 +1326,10 @@
             <div id="section-price" class="container-fluid section">
                 <div id="menu-title">
                     <h1>OUR PRICE</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-12">
@@ -1189,6 +1369,10 @@
             <div id="section-gallery" class="container-fluid section">
                 <div>
                     <h1>OUR GALLERY</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-12">
@@ -1216,6 +1400,10 @@
             <div id="section-team" class="container-fluid section">
                 <div>
                     <h1>OUR TEAM</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-12">
@@ -1245,9 +1433,13 @@
                 <div class="row">
                     <div class="col-lg-7 col-sm-12">
                         <h1>CONTACT US</h1>
+                        <div class="horizontal-break">
+                            <img src="images/cupcake.svg" alt="">
+                        </div>
+                        
                         <h3>Get in touch with us</h3>
-                        <p>ĐHQT Miền Đông +84 334387518</p>
-                        <p id="contact-email">duyen.nguyen.set18@eiu.edu.vn</p>
+                        <p><i class="fa-solid fa-location-dot"></i>ĐHQT Miền Đông <i class="fa-solid fa-phone-flip"></i>+84 334387518</p>
+                        <p id="contact-email"><i class="fa-solid fa-envelope"></i>duyen.nguyen.set18@eiu.edu.vn</p>
                         <form action="#" method="POST">
                             <input class="form-control" type="text" placeholder="Name">
                             <input class="form-control" type="email" placeholder="Email">
@@ -1262,6 +1454,34 @@
                 </div>
             </div>
         </main>
+        
+        <footer>
+            <img src="images/D.Cake.png" alt="">
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-left">
+                        <p>ABOUT US</p>
+                        <p>An Old World tradition since 1980.</p>
+                        <p>From Vietnam to America to you.</p>
+                    </div>
+                    <div class="col-6 col-right">
+                        <p>OPENING HOURS:</p>
+                        <p>Monday to Friday 7 a.m. to 7 p.m.</p>
+                        <hr>
+                        <p>Weekends / Holidays Closed</p>
+                    </div>
+                </div>
+            </div>
+            <p>Copyright &copy; 2021 - D.cake. All Rights Reserved.</p>
+        </footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" ></script>
 
         <script>
