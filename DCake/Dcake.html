@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>D.Cake</title>
+        
+<!--        Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        
+<!--        FontAwesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+<!--        jquery-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Paytone+One&display=swap" rel="stylesheet">
+    
+        <script>
+            $( function() {
+                $( "#tabs" ).tabs();
+            } );
+        </script>
+
+        <style>
+            @media (max-width: 991px) {
+                #services {
+                    display: none;
+                }
+                #section-offer img {
+                    display: none;
+                }
+                .cakes-100 div:last-child {
+                    padding-top: 50px;
+                    padding-inline: 20px;
+                }
+                .navbar-expand-lg .navbar-nav .nav-link {
+                    padding-left: 1.5rem;
+                }
+                .first-of-col-2 {
+                    margin-top: 0 !important;
+                }
+                #section-price .row div {
+                    margin-block: 30px;
+                }
+                html {
+                    /*width: 488px;*/
+                }
+            }
+            
+            /*Desktop*/
+            @media (min-width: 992px) {
+                .section:not(#section-gallery, #section-menu, #section-carousel-gallery) {
+                    padding-inline: 15%;
+                }
+                #section-gallery {
+                    padding-inline: 20px;
+                }
+                .cakes-100 div:last-child {
+                    padding-top: 150px;
+                    padding-right: 150px;
+                    padding-left: 50px;
+                }
+                .navbar-expand-lg .navbar-nav .nav-link {
+                     padding-right: 1.5rem;
+                     padding-left: 1.5rem;
+                }
+                #section-menu #tabs {
+                    margin-inline: 15%;
+                }
+                .first-of-col-2 {
+                    margin-top: 150px !important;
+                }
+                #section-price .row div:nth-child(odd) {
+                    background-color: #f8f4f4;
+                    margin-top: 30px;
+                }
+                #section-price .row div:nth-child(even) {
+                    background-color: #fff0f0;
+                    margin-bottom: 10px;
+                    border: 2px dashed #c694ce;
+                }
+            }
+            .go-top {
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 10;
+                
+                width: 40px;
+                height: 40px;
+                
+                background-color: #d4384c;
+                color: white;
+                
+                text-align: center;
+                line-height: 40px;
+                
+                border-radius: 50%;
+                box-shadow: 3px 3px 7px 0 gray;
+                cursor: pointer;
+                
+                display: none;
+            }
+            
+            /*navbar*/
+            .navbar {
+                background-color: #e56f7f;
+                padding: 0px;
+            }
+            .nav-item > .nav-link {
+                /* display: inline-block; */
+                display: flex;
+                color: white !important;
+                font-weight: bold;
+                align-items: center;
+                height: 70px;
+                /* padding-inline: 200px */
+            }
+            .nav-item > .nav-link:hover {
+                background-color: white;
+                opacity: 0.85;
+                color: #e56f7f !important;
+            }
+            .nav-item .active {
+                background-color: white;
+                color: #e56f7f !important;
+            }
+            .navbar-brand {
+                margin-right: 20%;
+                margin-left: 10%;
+            }
+            #logo {
+                height: 60px;
+            }
+            body {
+                position: relative;
+            }
+            
+            /*main*/
+            main {
+                margin-top: 70px;
+            }
+            img {
+                max-width: 100%;
+            }
+            h1, h3, h5 {
+                font-family: 'Paytone One', sans-serif;
+                text-align: center;
+            }
+            .horizontal-break {
+                position: relative;
+                width: 125px;
+                margin-inline: auto;
+                border-top: 1px solid black;
+                
+                margin-top: 20px;
+                margin-bottom: 25px;
+            }
+            .horizontal-break img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+
+                width: 25px;
+            }
+            .hr-white {
+                border-top: 1px solid white;
+            }
+            
+            /*carousel gallery*/
+            #section-carousel-gallery {
+                position: relative;
+                padding: 0;
+            }
+            #section-carousel-gallery .slide-down {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-30%);
+                
+                margin-inline: auto;
+                width: 62%;
+            }
+            
+            /*offer us*/
+            #section-offer {
+                background-color: #c694ce;
+                color: white;
+                text-align: center;
+            }
+            #section-offer h1 {
+                margin-top: 100px;
+                margin-bottom: 30px;
+                border: 2px dotted #f6e0e3;
+                padding-inline: 10px;
+            }
+            
+            /*about us*/
+            #section-about {
+                background-color: #f6e0e3;
+                padding-top: 40px;
+                padding-bottom: 50px;
+            }
+            #section-about h3 {
+                text-align: center;
+                color: #D1334C;
+            }
+            #section-about p span {
+                font-family: 'Paytone One', sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            #section-about .row {
+                text-align: center;
+                font-weight: bold;
+            }
+            #section-about img:not(.horizontal-break img) {
+                width: 25%;
+            }
+            
+            /*feedback*/
+            #section-feedback {
+                background-color: #c894cc;
+                width: 100%;
+            }
+            #section-feedback > div:first-child {
+                padding-top: 30px;
+                background-color: #c894cc;
+                color: white;
+            }
+            .carousel-indicators > button {
+                width: 7px !important;
+                height: 7px !important;
+                border-radius: 50%;
+                border: 3px solid #cccccc !important;
+            }
+            .carousel-indicators > button:not(.active) {
+                background-color: transparent !important;
+            }
+            .carousel-indicators .active {
+                background-color: #d0324b;
+            }
+            .carousel-caption {
+                top: 20px;
+            }
+            .carousel-caption > p {
+                /* width: 75%; */
+                margin-inline: auto;
+            }
+            .carousel-caption > p:first-child {
+                font-family: 'Times New Roman';
+            }
+            .carousel-caption > p:nth-child(2) {
+                margin-top: -15px;
+                color: black;
+            }
+            #section-feedback .carousel-item > img {
+                height: 250px;
+            }
+            
+            /*services*/
+            #section-services {
+                padding-block: 60px;
+            }
+            .card {
+                border: none;
+                border-radius: 20px;
+                background-color: #f8e4e4;
+                padding-top: 0px;
+                margin-top: 70px;
+            }
+            .btn-red {
+                background-color: #d4384c;
+                font-weight: bold;
+                color: white;
+                border: none;
+                margin-top: 20px;
+                margin-bottom: 50px;
+                padding-block: 10px;
+                padding-inline: 15px;
+                cursor: pointer;
+            }
+            #section-services .btn-red {
+                margin-bottom: 30px !important;
+            }
+            .btn-red:hover {
+                background-color: #d4384c;
+            }
+            .card-icon {
+                border-radius: 50%;
+                border: 7px solid white;
+                width: 120px;
+                margin-top: -70px;
+                margin-bottom: 20px;
+                box-shadow: 5px 5px #c894cc;
+            }
+            
+            /*menu*/
+            #section-menu {
+                padding: 0;
+                background-color: #f8e4e4;
+                padding-top: 50px;
+            }
+            #section-menu .image-frame, #section-menu .option-title {
+                font-family: 'Gloria Hallelujah', cursive;
+            }
+            .cakes-100 img {
+                width: 100%;
+                object-fit: cover;
+            }
+            .cakes-100 div:last-child {
+                background-color: #c894cc;
+                text-align: center;
+                color: white;
+            }
+            #section-menu .ui-widget-content {
+                background-color: transparent;
+            }
+            #tabs {
+                margin-top: 50px;
+                margin-bottom: 40px;
+            }
+            #tabs li {
+                margin-inline: 10px;
+            }
+            #tabs li, #tabs li a {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            #tabs li a {
+                display: inline-block;
+                padding-block: 15px;
+                font-weight: bold;
+                min-width: 100px;
+                text-align: center;
+            }
+            #tabs ul {
+                display: flex;
+                justify-content: center;
+            }
+            .ui-widget.ui-widget-content {
+                border: none;
+            }
+            .ui-widget-header {
+                background: transparent;
+                border: none;
+            }
+            .ui-state-active a, .ui-state-active a:link, ui-state-active a:visited {
+                color: white !important;
+                background-color: #c694ce;
+            }
+            .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+                border: 1px solid #c694ce;
+                background: #c694ce;
+            }
+            .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+                color: #e66f7f;
+                text-decoration: none;
+            }
+            #tabs > div {
+                border: 5px solid #c694ce;
+                border-radius: 10px;
+                
+                padding: 50px 50px 0 50px;
+
+                position: relative;
+            }
+            .image-frame {
+                display: inline-block;
+                
+                padding: 10px;
+                padding-bottom: 0;
+                
+                background-color: white;
+                
+                transform: rotate(-3deg);
+            }
+            .image-frame p {
+                margin-block: 15px;
+                text-align: center;
+                font-size: 20px;
+            }
+            .menu-item-title {
+                position: absolute;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-40%);
+                z-index: 10;
+                
+                color: white;
+                background-color: #e66f7f;
+                
+                padding: 20px;
+                font-weight: bold;
+                
+                border-radius: 10px;
+            }
+            .menu-option {
+                background-color: white;
+                padding: 10px 20px;
+                border-radius: 30px;
+                margin-block: 30px;
+            }
+            .menu-option p {
+                margin: 0;
+            }
+            .option {
+                display: flex;
+            }
+            .option-title {
+                flex-grow: 1;
+                color: #e66f7f;
+                border-bottom: 2px dotted #e66f7f;
+                margin-right: 2px;
+            }
+            .option-price {
+                font-weight: bold;
+                transform: translateY(12px);
+            }
+            
+            /*prices*/
+            #section-price {
+                padding-top: 100px;
+            }
+            #section-price .row {
+                margin-top: 30px;
+            }
+            #section-price .row div {
+                border-radius: 20px;
+                text-align: center;
+                padding-top: 20px;
+                padding-inline: 0px;
+            }
+            #section-price .row div p:first-of-type {
+                font-family: 'Paytone One', sans-serif;
+                color: #c694ce;
+                font-size: 40px;
+            }
+            #section-price .row div span {
+                font-weight: bold;
+            }
+            #section-price .row div:nth-child(2) {
+                background-image: url(images/price.png);
+                background-repeat: no-repeat;
+                background-position: right bottom;
+            }
+            #section-price .row div img {
+                float: right;
+                width: 20%;
+            }
+            #section-price .row div:nth-child(odd) {
+                background-color: #f8f4f4;
+            }
+            #section-price .row div:nth-child(even) {
+                background-color: #fff0f0;
+                border: 2px dashed #c694ce;
+            }
+            
+            /*gallery*/
+            #section-gallery img:not(.horizontal-break img) {
+                width: 100%;
+                margin-block: 15px;
+                border-radius: 20px;
+            }
+            #section-gallery {
+                margin-block: 50px;
+            }
+            #section-gallery .row {
+                margin-top: 50px;
+            }
+            
+            /*team*/
+            #section-team {
+                padding-block: 50px;
+            }
+            #section-team img:not(.horizontal-break img) {
+                margin-block: 20px;
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0px 4px red;
+            }
+            
+            /*contact*/
+            #section-contact {
+                text-align: center;
+                padding-block: 50px;
+            }
+            #section-contact h3 {
+                margin-bottom: 50px;
+                margin-top: 70px;
+            }
+            #section-contact input {
+                width: 100%;
+            }
+            #section-contact input, #section-contact textarea {
+                margin-block: 5px;
+                border: 2px dashed #c694ce;
+            }
+            #section-contact img:not(.horizontal-break img) {
+                width: 100%;
+            }
+            #section-contact p {
+                color: #6A6A6A;
+                font-weight: bold;
+            }
+            #section-contact i {
+                color:  #E66D7D;
+                margin-right: 10px;
+                margin-left: 20px;
+            }
+            #section-contact #contact-email {
+                color: #E66D7D;
+            }
+            
+            /*footer*/
+            footer {
+                padding-block: 50px;
+                
+                background-color: #C694CE;
+                color: white;
+                
+                text-align: center;
+                
+                outline: 5px dashed #C694CE;
+                /*margin-bottom: 5px;*/
+                border-bottom: 5px dashed white;
+                /*border-top: 5px dashed white;*/
+            }
+            footer img {
+                width: 200px;
+            }
+            footer .social-icons {
+                margin-bottom: 30px;
+            }
+            footer a {
+                display: inline-block;
+
+                width: 50px;
+                height: 50px;
+                
+                font-size: 20px;
+                line-height: 50px;
+                
+                border-radius: 50%;
+                
+                background-color: #e66f7f;
+                color: white;
+                
+                margin-inline: 5px;
+            }
+            footer a:hover {
+                color: white;
+            }
+            footer .col-left {
+                text-align: right;
+            }
+            footer .col-right {
+                text-align: left;
+            }
+            footer hr {
+                width: 250px;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <span class="go-top"><i class="fa-solid fa-angle-up"></i></span>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img id="logo" src="images/D.Cake.png" alt="" />
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active"
+                                    aria-current="page"
+                                    href="#"
+                                    >Home</a
+                                >
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    About us
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    aria-labelledby="navbarDropdown"
+                                >
+                                    <li>
+                                        <a class="dropdown-item" href="#section-about"
+                                            >Our History</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#section-about"
+                                            >Graphics</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="services" class="nav-item">
+                                <a class="nav-link" href="#section-services">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#section-menu">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#section-price">Prices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#section-gallery">Gallery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#section-team">Team</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#section-contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div id="section-carousel-gallery" class="container-fluid section">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/slide1.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down1.png" alt="" class="slide-down">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide2.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down2.png" alt="" class="slide-down">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide3.jpg" class="d-block w-100" alt="...">
+                            <img src="images/slide-down3.png" alt="" class="slide-down">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="section-offer" class="container-fluid section">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <h1>Offer of the week</h1>
+                        <p>
+                            Throughout the week, D.cake will offer delicious
+                            wedding cakes, cupcakes, cookies, fresh roasted
+                            coffee and custom cakes for every occasion! Choose
+                            one from our menu or create your own bespoke
+                            masterpiece! Fresh from D.cake Shop, customised for
+                            you.
+                        </p>
+                        <a href="#section-menu" class="btn btn-primary btn-red"
+                            >Check our menu</a
+                        >
+                    </div>
+                    <div class="col-lg-6 col-sm-0">
+                        <img src="images/offer.png" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-about" class="container-fluid section">
+                <div>
+                    <h1>ABOUT US</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+
+                    <h3>Baking Delicious cakes since 1980</h3>
+                    <p>
+                        <span>D.cake</span> was found by four bakers in 1980 in
+                        Vietnam, and became a great success soon after. One of
+                        the bakers had a daughter named Duyen and the rest of
+                        the bakers were happy to name the business the D.cake.
+                    </p>
+                    <p>
+                        Over the years determination to adhering to the
+                        incredible cake and pastry recipes brought by these
+                        bakers was the key in D.cake's grand success. The four
+                        bakers compiled all their best recipes in one single
+                        book. Today, the very old and mostly hand written recipe
+                        book is kept at D.cake in Vietnam. Although the pages
+                        are partially torn and discolored, it still functions as
+                        “the go to book” when there is any doubt among the young
+                        bakers and cake artists.
+                    </p>
+                    <p>
+                        We are proud to offer our baked goods using many of same
+                        recipes from 100 years ago atVictoria Bakery & Café. All
+                        products are handmade right in the bakery, and we bake
+                        seven days a week.
+                    </p>
+                    <p>
+                        We are determined to continue to follow the recipes and
+                        techniques closely, despite the fact that it takes us
+                        longer to make our products using the traditional
+                        ingredients and methods. You, our loyal customers know
+                        and taste the difference in real butter, quality flour,
+                        finest chocolate, handpicked fruits and premium dairy
+                        products along with the best coffee we could find.
+                    </p>
+                    <p>
+                        The mission of D.cake is never to give in to less than
+                        ideal and offer the finest products and services to our
+                        customers. As a team, we take pride in the quality we
+                        present and cherishing our customers’ trust and loyalty
+                        in us.
+                    </p>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row gy-5">
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about1.svg" alt="" />
+                            <h5>MAKE WITH LOVE</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about2.svg" alt="" />
+                            <h5>SEASONAL PASTRIES</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about3.svg" alt="" />
+                            <h5>EVEN CATERING</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about4.svg" alt="" />
+                            <h5>GLUTEN FREE OPTIONS</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about5.svg" alt="" />
+                            <h5>100% HOMEMADE</h5>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <img src="images/about4.svg" alt="" />
+                            <h5>VEGAN OPTIONS</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-feedback" class="container-fluid section">
+                <div>
+                    <h1>WHAT OUR CLIENTS SAY</h1>
+    
+                    <div class="horizontal-break hr-white">
+                        <img src="images/cupcake-white.svg" alt="">
+                    </div>
+                </div>
+                <div
+                    id="carouselExampleCaptions"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                >
+                    <div class="carousel-indicators">
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="0"
+                            class="active"
+                            aria-current="true"
+                            aria-label="Slide 1"
+                        ></button>
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="1"
+                            aria-label="Slide 2"
+                        ></button>
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="2"
+                            aria-label="Slide 3"
+                        ></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img
+                                src="images/feedback-background.jpg"
+                                class="d-block w-100"
+                                alt="..."
+                            />
+                            <div class="carousel-caption d-md-block">
+                                <p>
+                                    "Everyone is so pleasant! Delicious cookies
+                                    and delicious coffee ground the way I like
+                                    it. Thank you!"
+                                </p>
+                                <p>- Susan B.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="images/feedback-background.jpg"
+                                class="d-block w-100"
+                                alt="..."
+                            />
+                            <div class="carousel-caption d-md-block">
+                                <p>
+                                    "Fantastic experience from order to pick up!
+                                    Everyone loved the Princess cake! Thank
+                                    you!"
+                                </p>
+                                <p>- Chase M.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="images/feedback-background.jpg"
+                                class="d-block w-100"
+                                alt="..."
+                            />
+                            <div class="carousel-caption d-md-block">
+                                <p>
+                                    "I just had the princess cake from D.cake
+                                    and it changed my life. It is literally a
+                                    ray of light in these dark times. I think
+                                    about it even when I'm not eating it."
+                                </p>
+                                <p>- Astrid S.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev"
+                    >
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next"
+                    >
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="section-services" class="container-fluid section">
+                <div>
+                    <h1>OUR SERVICES</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+                </div>
+                <div class="row gx-5 gy-4">
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                    class="card-icon"
+                                    src="images/healthy.jpg"
+                                    alt=""
+                                />
+                                <h5 class="card-title">Healthy Option</h5>
+                                <p class="card-text">
+                                    We can ensure you that no matter what your
+                                    favourite desserts may be, there will always
+                                    be a Superyummy way to tweak it to make a
+                                    more nourishing and body- loving version of
+                                    it.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                    >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                    class="card-icon"
+                                    src="images/event.jpg"
+                                    alt=""
+                                />
+                                <h5 class="card-title">Corporate Events</h5>
+                                <p class="card-text">
+                                    We can make impressive and delicious cakes
+                                    for your organisation for any occasion,
+                                    including product launches, anniversaries,
+                                    team building events, retirements, and much
+                                    more.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                    >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                    class="card-icon"
+                                    src="images/pastries.jpg"
+                                    alt=""
+                                />
+                                <h5 class="card-title">Pastries</h5>
+                                <p class="card-text">
+                                    Our pastries are baked fresh daily in our
+                                    Revent oven. We have a wide variety of
+                                    pastries from the sweet to the savory, from
+                                    classic Italian favorites to our very own
+                                    modern creations.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                    >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                        class="card-icon"
+                                        src="images/birthday.jpg"
+                                        alt=""
+                                />
+                                <h5 class="card-title">Birthday</h5>
+                                <p class="card-text">
+                                    Whatever you're looking for we have it,
+                                    whether that's a child's birthday cake a
+                                    women's birthday cake, a men's birthday
+                                    cake, a number cake or your own creation!
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                        class="card-icon"
+                                        src="images/custom.jpg"
+                                        alt=""
+                                />
+                                <h5 class="card-title">Custom Cake</h5>
+                                <p class="card-text">
+                                    We create exceptional wedding and special
+                                    event cakes that embody our individual
+                                    personality and tastes. Our bakers enjoy
+                                    working with you to create a cake that is
+                                    both beautiful and delicious.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 d-flex align-self-stretch">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img
+                                        class="card-icon"
+                                        src="images/wedding.jpg"
+                                        alt=""
+                                />
+                                <h5 class="card-title">Wedding</h5>
+                                <p class="card-text">
+                                    Your special day deserves a very special
+                                    cake! Choose one of our ready-to-order
+                                    designs or arrange a consultation to create
+                                    a completely bespoke wedding cake. See our
+                                    gallery for inspiration.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-red"
+                                >More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-menu" class="container-fluid section">
+                <div>
+                    <h1>OUR MENU</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+                </div>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">Cakes</a></li>
+                        <li><a href="#tabs-2">Pastries</a></li>
+                        <li><a href="#tabs-3">Sweets</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <h3 class="menu-item-title">Cake & Pies</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="image-frame">
+                                    <img src="images/menu1.jpg" alt="">
+                                    <p>Our famous Forest cake</p>
+                                </div>
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Chocolate Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Homemade Apple Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Special Cake</div>
+                                        <div class="option-price">$12</div>
+                                    </div>
+                                    <p class="option-body">$5.5</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="menu-option first-of-col-2">
+                                    <div class="option">
+                                        <div class="option-title">CheeseCake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Vanilla Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Forest Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Boston Cream Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+                                
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Brownie</div>
+                                        <div class="option-price">$4</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+    
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Butter Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabs-2">
+                        <h3 class="menu-item-title">Pastries</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="image-frame">
+                                    <img src="images/menu2.jpg" alt="">
+                                    <p>Our famous Forest cake</p>
+                                </div>
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Chocolate Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Homemade Apple Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Special Cake</div>
+                                        <div class="option-price">$12</div>
+                                    </div>
+                                    <p class="option-body">$5.5</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="menu-option first-of-col-2">
+                                    <div class="option">
+                                        <div class="option-title">CheeseCake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Vanilla Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Forest Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Boston Cream Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Brownie</div>
+                                        <div class="option-price">$4</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Butter Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabs-3">
+                        <h3 class="menu-item-title">Sweets</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="image-frame">
+                                    <img src="images/menu3.jpg" alt="">
+                                    <p>Our famous Forest cake</p>
+                                </div>
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Chocolate Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Homemade Apple Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Special Cake</div>
+                                        <div class="option-price">$12</div>
+                                    </div>
+                                    <p class="option-body">$5.5</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="menu-option first-of-col-2">
+                                    <div class="option">
+                                        <div class="option-title">CheeseCake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Vanilla Cake</div>
+                                        <div class="option-price">$5.5</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Forest Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Boston Cream Pie</div>
+                                        <div class="option-price">$7</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Brownie</div>
+                                        <div class="option-price">$4</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+            
+                                <div class="menu-option">
+                                    <div class="option">
+                                        <div class="option-title">Butter Cake</div>
+                                        <div class="option-price">$11</div>
+                                    </div>
+                                    <p class="option-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cakes-100 gx-0">
+                    
+                    <div class="col-lg-6 col-sm-12 d-flex align-self-stretch">
+                        <img src="images/100-cake.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <h1>100 cakes to choose</h1>
+                        <p>
+                            Cakes are special. Every birthday, every celebration
+                            ends with something sweet, a cake, and people
+                            remember. It's all about the memories
+                        </p>
+                        <a href="#section-contact" class="btn btn-primary btn-red"
+                            >Send us a message</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-price" class="container-fluid section">
+                <div id="menu-title">
+                    <h1>OUR PRICE</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <h3>BASIC EVENT</h3>
+                        <p>$100</p>
+                        <p><span>20</span> Pastries</p>
+                        <p><span>2</span>Cakes</p>
+                        <p><span>30</span>Cupcakes</p>
+                        <p>Perfect for Small Events</p>
+                        <p>Serves up to 20 people</p>
+                        <a href="#section-contact" class="btn btn-primary btn-red">Contact</a>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <h3>MEDIUM EVENT</h3>
+                        <p>$250</p>
+                        <p><span>50</span> Pastries</p>
+                        <p><span>6</span>Cakes</p>
+                        <p><span>70</span>Cupcakes</p>
+                        <p>Perfect for Medium Events</p>
+                        <p>Serves up to 50 people</p>
+                        <a href="#section-contact" class="btn btn-primary btn-red">Contact</a>
+                        <!-- <img src="images/price.png" alt=""> -->
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <h3>MEGA EVENT</h3>
+                        <p>$550</p>
+                        <p><span>100</span> Pastries</p>
+                        <p><span>10</span>Cakes</p>
+                        <p><span>130</span>Cupcakes</p>
+                        <p>Perfect for Large Events</p>
+                        <p>Serves up to 100 people</p>
+                        <a href="#section-contact" class="btn btn-primary btn-red">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-gallery" class="container-fluid section">
+                <div>
+                    <h1>OUR GALLERY</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/gallery1.jpg" alt="" />
+                        <img src="images/gallery4.jpg" alt="" />
+                        <img src="images/gallery8.jpg" alt="" />
+                        <img src="images/gallery10.jpg" alt="" />
+                        <img src="images/gallery12.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/gallery2.jpg" alt="" />
+                        <img src="images/gallery6.jpg" alt="" />
+                        <img src="images/gallery9.jpg" alt="" />
+                        <img src="images/gallery13.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/gallery3.jpg" alt="" />
+                        <img src="images/gallery5.jpg" alt="" />
+                        <img src="images/gallery7.jpg" alt="" />
+                        <img src="images/gallery11.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-team" class="container-fluid section">
+                <div>
+                    <h1>OUR TEAM</h1>
+    
+                    <div class="horizontal-break">
+                        <img src="images/cupcake.svg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team1.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team2.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team3.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team4.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team5.jpg" alt="" />
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="images/team6.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-contact" class="container-fluid section">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-12">
+                        <h1>CONTACT US</h1>
+                        <div class="horizontal-break">
+                            <img src="images/cupcake.svg" alt="">
+                        </div>
+                        
+                        <h3>Get in touch with us</h3>
+                        <p><i class="fa-solid fa-location-dot"></i>ĐHQT Miền Đông <i class="fa-solid fa-phone-flip"></i>+84 334387518</p>
+                        <p id="contact-email"><i class="fa-solid fa-envelope"></i>duyen.nguyen.set18@eiu.edu.vn</p>
+                        <form action="#" method="POST">
+                            <input class="form-control" type="text" placeholder="Name">
+                            <input class="form-control" type="email" placeholder="Email">
+                            <input class="form-control" type="text" placeholder="Subject">
+                            <textarea class="form-control" name="message" id="message" cols="80" rows="5" placeholder="Enter your message"></textarea>
+                            <button class="btn btn-primary btn-red" type="submit">Send message</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-5 col-sm-12">
+                        <img src="images/macarons.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <img src="images/D.Cake.png" alt="">
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-left">
+                        <p>ABOUT US</p>
+                        <p>An Old World tradition since 1980.</p>
+                        <p>From Vietnam to America to you.</p>
+                    </div>
+                    <div class="col-6 col-right">
+                        <p>OPENING HOURS:</p>
+                        <p>Monday to Friday 7 a.m. to 7 p.m.</p>
+                        <hr>
+                        <p>Weekends / Holidays Closed</p>
+                    </div>
+                </div>
+            </div>
+            <p>Copyright &copy; 2021 - D.cake. All Rights Reserved.</p>
+        </footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" ></script>
+
+        <script>
+            $(window).scroll(() => {
+                if ($(this).scrollTop() > 100) {
+                    $('.go-top').fadeIn();
+                } else {
+                    $('.go-top').fadeOut();
+                }
+            });
+            
+            $('.go-top').on('click', () => {
+                $('body, html').animate({scrollTop: 0}, 100);
+            });
+        </script>
+    </body>
+</html>
