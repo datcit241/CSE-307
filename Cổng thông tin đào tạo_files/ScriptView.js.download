@@ -1,0 +1,592 @@
+﻿var nameUL = "";
+var nameToogle = "";
+var stateClickDropDown = 2;
+var currentWidthScreen = 0;
+var CurrentMenuID = "";
+
+function SetValComboWhenChoice(idControl, idLinkChoice) {
+
+    var af = $("#" + idLinkChoice + "");
+
+    var valuess = af.data("whatever");
+
+    if (valuess === "" || valuess === undefined) {
+        valuess = af.prop("innerHTML");
+        $("#" + idControl).prop("innerHTML", valuess);
+
+        $("#" + idControl).prop("value", valuess);
+    }
+    else {
+        $("#" + idControl).prop("value", valuess);
+    }
+
+    $("#" + idControl).data("content", af.data("content"));
+    $("#ul_" + idControl).hide();
+    $("#togg_" + idControl).data("whatever", "hide");
+}
+
+function SortTable(s, field, sessName, id) {
+    var url = rootUrl + "Shared/SortTableView";
+    var valueSort = $("#" + s).data("content");
+    ajaxExec(url, { column: field, sessName: sessName, valueSort: valueSort }, function (response) {
+        if (response.toString() !== "") {
+            $("#" + id).prop("innerHTML", response.toString());
+            if (valueSort === "asc") {
+                valueSort = "desc";
+                $("#" + s).data("content", valueSort);
+                $("#" + s).prop("class", "glyphicon glyphicon-collapse-up");
+            }
+            else {
+                valueSort = "asc";
+                $("#" + s).data("content", valueSort);
+                $("#" + s).prop("class", "glyphicon glyphicon-collapse-down");
+            }
+        }
+    });
+}
+
+function SearhInTable(sa, tbName) {
+    if (sa.value === "" || sa.value === undefined) {
+        $("#" + tbName + " tr").show();
+        return;
+    }
+    $("#" + tbName + " tr").each(function () {
+        if (!this.id) return;
+        var ctrl = $("#" + this.id);
+
+        var state = false;
+        ctrl.find("td").each(function () {
+            state = (this.innerHTML.toLowerCase().indexOf(sa.value.toLowerCase()) >= 0);
+            if (state) {
+                return false;
+            }
+        });
+        if (state) {
+            ctrl.show();
+        } else
+            ctrl.hide();
+    });
+}
+function DropDownSelectIndex(nameCtrl, idCtrl, methodExtend, index) {
+    var indexs = -1;
+
+    $("#" + nameCtrl + " ul table tr").each(function () {
+        if (index === -1) {
+            if ($("#" + nameCtrl + " ul table tr").length - 2 === indexs) {
+                ChonDropDow(this, nameCtrl, idCtrl, methodExtend);
+                return false;
+            }
+        }
+        else if (index === indexs) {
+            ChonDropDow(this, nameCtrl, idCtrl, methodExtend);
+            return false;
+        }
+
+        indexs++;
+    });
+}
+$(window).click(function (event) {
+    if (stateClickDropDown !== 1)
+        HideAllDropDown(nameUL, nameToogle);
+    else
+        stateClickDropDown = 2;
+});
+function ShowDropDow(s, namDropDow) {
+    stateClickDropDown = 2;
+    HideAllDropDown(nameUL, nameToogle);
+    $("#" + namDropDow).prop("show", "true");
+    if ($("#" + s.id).data("whatever") === "hide") {
+        $("#" + s.id).data("whatever", "show");
+        $("#" + namDropDow).show();
+        nameUL = namDropDow;
+        nameToogle = s.id;
+    }
+    else {
+        $("#" + s.id).data("whatever", "hide");
+        $("#" + namDropDow).hide();
+        nameUL = "";
+        nameToogle = "";
+    }
+}
+function SetStatusClickSearch() {
+    event.stopPropagation();
+    stateClickDropDown = 1;
+}
+function HideAllDropDown(nameU, nameT) {
+    if (stateClickDropDown !== 1) {
+        if (nameT !== undefined && nameT !== "")
+            $("#" + nameT).data("whatever", "hide");
+        if (nameU !== "")
+            $("#" + nameU).hide();
+    }
+    stateClickDropDown = 2;
+}
+function SetValDropDowWhenChoice(idControl, idLinkChoice, nameShow) {
+    var af = $("#" + idLinkChoice + "");
+    $("#" + nameShow).prop("value", af.data("whatever"));
+    $("#" + nameShow).data("content", af.data("content"));
+    $("#" + nameShow).data("whatever", nameShow);
+    $("#ul_" + nameShow).hide();
+    $("#togg_" + nameShow).data("whatever", "hide");
+    $("#" + idControl).data("content", af.data("content"));
+    $("#" + idControl).data("whatever", idLinkChoice);
+
+}
+function SetValToCombo(idcombo, idval, content) {
+    var af = $("#" + idcombo + "");
+    af.prop("value", content);
+    af.data("content", idval);
+    af.data("whatever", '');
+}
+
+function ChonHocKy(s, nameDropDow, methodName) {
+    SetValComboWhenChoice(nameDropDow, s.id);
+    if (methodName !== null && methodName !== "")
+        window[methodName].apply(this, null);
+}
+
+
+function ChonDropDow(s, nameDropDow, nameShow, methodName) {
+    SetValDropDowWhenChoice(nameDropDow, s.id, nameShow);
+    if (methodName !== null && methodName !== "")
+        window[methodName].apply(this, null);
+}
+function GetValueControl(nameCtrl, iscontent) {
+    var ctrl = $("#" + nameCtrl);
+    if (iscontent === true) {
+        return ctrl.data("content");
+    }
+    else return ctrl.val();
+}
+
+function CheckAll(s, nameChild, methodName) {
+    if (s.checked) {
+        $("." + nameChild).each(function () {
+            document.getElementById(this.id).parentElement.parentElement.style.backgroundColor = "whitesmoke";
+            this.checked = true;
+        })
+    }
+    else {
+        $("." + nameChild).each(function () {
+            document.getElementById(this.id).parentElement.parentElement.style.backgroundColor = "";
+            this.checked = false;
+        })
+    }
+    var args = new Array();
+    args.push(s.checked);
+    if (methodName !== null && methodName !== "")
+        window[methodName].apply(this, args);
+}
+function CheckChild(s, id, nameParent, methodName) {
+    if ($("." + s).is(":checked")) {
+        var isAllChecked = 0;
+        $("." + s).each(function () {
+            if (!this.checked) {
+                document.getElementById(this.id).parentElement.parentElement.style.backgroundColor = "";
+                isAllChecked = 1;
+            }
+            else {
+                var chk = document.getElementById(this.id);
+                var row = chk.parentNode.parentNode;
+                row.style.backgroundColor = "whitesmoke";
+            }
+        })
+        if (isAllChecked === 0) {
+            document.getElementById(id).parentElement.parentElement.style.backgroundColor = "";
+            $("#" + nameParent).prop("checked", true);
+        }
+    }
+    else {
+        $("#" + nameParent).prop("checked", false);
+        document.getElementById(id).parentElement.parentElement.style.backgroundColor = "";
+    }
+    var args = new Array();
+    args.push(id);
+    if (methodName !== null && methodName !== "")
+        window[methodName].apply(this, args);
+}
+function SetDataToForm(params, nameForm) {
+    $("#" + nameForm).find(':input').each(function () {
+        for (var i in params) {
+            var name = params[i].toString().split('#')[0];
+            var value = params[i].toString().split('#')[1];
+
+            var ctrl = $(this);
+            if (ctrl.data("whatever") === name)
+                ctrl.data("content", value);
+            if (ctrl.prop("id") === name)
+                ctrl.val(value);
+        }
+    });
+
+}
+
+function SerializeArrayForm(arr, lenght) {
+    var rel = new Array();
+    var relextend = new Array();
+    var iextend = 0;
+    for (i = 0; i < lenght; i++) {
+        var name = arr[i].name;
+        var ctrl = $("#" + name);
+        //if (name === "NoiDungTinTuc")
+        //{
+        //    alert("ok");
+        //}
+        if (ctrl.data("id") !== "Editor" && ctrl.data("whatever") !== undefined && ctrl.data("whatever") !== "") {
+            relextend[iextend] = ctrl.data("whatever") + "#" + ctrl.data("content");
+            iextend++;
+            //if (name === "NoiDungTinTuc") {
+            //    alert("SAI");
+            //}
+        }
+        else {
+            if (ctrl.data("id") === "Editor") {
+                rel[i] = name + "#" + ctrl.code();
+                //if (name === "NoiDungTinTuc")
+                //    alert(rel[i]);
+            }
+            else
+                rel[i] = name + "#" + ctrl.prop("value");
+        }
+
+    }
+    if (relextend.length > 0) {
+        for (i = 0; i < relextend.length; i++) {
+            rel[rel.length + i] = relextend[i];
+        }
+    }
+    return rel;
+}
+function GetCheckItem(nameChild) {
+    var arr = new Array();
+    var i = 0;
+    $("." + nameChild).each(function () {
+        if (this.checked === true) {
+            arr[i] = this.value;
+            i++;
+        }
+    })
+    return arr;
+}
+
+function DeleteSelected(nameChild, nameView, nameTable, nameSession) {
+    var lst = GetCheckItem(nameChild);
+    if (lst.length === 0) {
+        ShowDialog("Chưa chọn đối tượng cần xóa", "sm", "danger");
+        return;
+    }
+    ShowWaittingSmallInfo("Đang xóa mẫu tin, vui lòng đợi!");
+    $.ajax({
+        url: rootUrl + nameView + "/DeleteSelected",
+        type: 'POST',
+        data: { list: lst, nameTable: nameTable, nameSession: nameSession },
+        dataType: 'json',
+        success: function (evt) {
+            HideWaitingForm();
+            if (evt.toString() !== "") {
+                eval("AfterDeleteAction")();
+                ShowDialog("Xóa mẫu tin thành công", "sm");
+            }
+            else {
+                ShowDialog("Xóa mẫu tin không thành công", "sm", "danger");
+            }
+        },
+        error: function (req, status, error) {
+            HideWaitingForm();
+            alert(req.responseText);
+        }
+    });
+}
+
+function ShowDialog(mess, size, typeShow) {
+    if (typeShow === "danger")
+        typeShow = "glyphicon glyphicon-alert";
+    else if (typeShow === "warning")
+        typeShow = "glyphicon glyphicon-alert";
+    DialogShow.show(mess, { dialogSize: size, progressType: typeShow });
+}
+function AfterCallFuncEdit(response) {
+
+    for (i = 0; i <= response.length - 1; i++) {
+
+        if (response[i] === null)
+            continue;
+        var contents = response[i].toString().split('#');
+        var name = contents[0];
+        $('#error' + name).hide();
+        name = "#" + name;
+
+        var value = "";
+        for (j = 1; j < contents.length; j++) {
+            value = value + contents[j];
+        }
+        var ctrl = $(name);
+        if (ctrl.data("whatever") === "disible") {
+            ctrl.prop("disabled", "disabled");
+        }
+        else ctrl.prop("disabled", "");
+
+        if (ctrl.prop("type") === "checkbox") {
+            ctrl.prop("checked", value !== "1" ? "" : "1");
+        }
+        else {
+            ctrl.val(value);
+            if (ctrl.data("id") === "Editor")
+                ctrl.code(value);
+        }
+
+        if (response[i].toString().split('#').length > 2) {
+            ctrl.data("whatever", response[i].toString().split('#')[2].toString());
+        }
+        if (response[i].toString().split('#').length > 3)
+            ctrl.data("content", response[i].toString().split('#')[3].toString());
+        if (response[i].toString().split('#').length > 4)
+            ctrl.prop("value", response[i].toString().split('#')[4].toString());
+    }
+}
+function ShowDialogErrorConfirm(mess, methodName, idClick, size, typeShow) {
+    if (typeShow === "danger")
+        typeShow = "glyphicon glyphicon-warning";
+    else if (typeShow === "warning")
+        typeShow = "glyphicon glyphicon-alert";
+    DialogShowConfirm.show(mess, methodName, idClick, { dialogSize: size, progressType: typeShow });
+}
+function HideWaitingForm() {
+    waitingDialog.hide();
+}
+function ShowWaittingSmallInfo(tieude) {
+    waitingDialog.show(tieude, { dialogSize: 'sm', progressType: '' });
+}
+function ShowWaittingSmallWarning(tieude) {
+    waitingDialog.show(tieude, { dialogSize: 'sm', progressType: 'warning' });
+}
+function ShowWaittingNormalWarning(tieude) {
+    waitingDialog.show(tieude, { dialogSize: 'm', progressType: 'warning' });
+}
+function ShowWaittingNormalInfo(tieude) {
+    waitingDialog.show(tieude, { dialogSize: 'm', progressType: 'success' });
+}
+(function ($) {
+    $('.spinner .btn:first-of-type').on('click', function () {
+        $('.spinner input').val(parseInt($('.spinner input').val(), 10) + 1);
+    });
+    $('.spinner .btn:last-of-type').on('click', function () {
+        $('.spinner input').val(parseInt($('.spinner input').val(), 10) - 1);
+    });
+})(jQuery);
+function ClickConfirmDialog(values) {
+    $('#btnOKDialog').data("content", values);
+    var args = new Array();
+    args.push(values);
+    var methodName = DialogShowConfirm.MethodName();
+    var idCtrlChecked = DialogShowConfirm.IDClick();
+    args.push(idCtrlChecked);
+    DialogShowConfirm.hide();
+    if (methodName !== null && methodName !== "")
+        window[methodName].apply(this, args);
+}
+
+var DialogShowConfirm = (function ($) {
+    var methodName = "";
+    var idClick = "";
+    var $dialogconfirm = $(
+        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+        '<div class="modal-dialog modal-m">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header"><h4 class="modal-tilte custom-align" style="margin:0;">Thông báo</h4></div>' +
+        '<div class="modal-body">' +
+        '<div style="margin-bottom:0;width:100%"><label style="width:100%;height:30px;vertical-align:middle" class="alert alert-danger"></label></div>' +
+        '</div>' +
+        '<div class="modal-footer"><button type="button" onclick="ClickConfirmDialog(1)" id="btnOKDialog" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Tiếp tục</button>' +
+        '<button type="button" class="btn btn-default" onclick="ClickConfirmDialog(0)"><span class="glyphicon glyphicon-remove"></span> Ngưng</button></div>' +
+        '</div></div></div>');
+
+    return {
+
+        MethodName: function () {
+            return methodName;
+        },
+        IDClick: function () {
+            return idClick;
+        },
+        show: function (message, methoaAfterClickApply, _idClick, options) {
+            // Assigning defaults
+            var settings = $.extend({
+                dialogSize: 'm',
+                progressType: ''
+            }, options);
+            if (typeof message === 'undefined') {
+                message = 'Loading';
+            }
+            if (typeof options === 'undefined') {
+                options = {};
+            }
+            $dialogconfirm.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+            //if (settings.progressType)
+            //{
+            //    $dialogconfirm.find('span').prop("class", settings.progressType);
+            //}
+            $dialogconfirm.find('label').prop("innerHTML", " " + message);
+            methodName = methoaAfterClickApply;
+            idClick = _idClick;
+            $dialogconfirm.modal();
+        },
+        /**
+		 * Closes dialog
+		 */
+        hide: function () {
+            $dialogconfirm.modal('hide');
+        }
+    }
+
+})(jQuery);
+
+var DialogShow = (function ($) {
+    // Creating modal dialog's DOM
+    var $dialog = $(
+        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y:visible;">' +
+        '<div class="modal-dialog modal-m">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header"><h4 class="modal-tilte custom-align" style="margin:0;">Thông báo</h4></div>' +
+        '<div class="modal-body">' +
+        '<div style="margin-bottom:0;"><i></i> <label></label></div>' +
+        '</div>' +
+        '<div class="modal-footer"><button type="button"  class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Đóng</button></div>' +
+        '</div></div></div>');
+
+
+    return {
+        /**
+		 * Opens our dialog
+		 * @param message Custom message
+		 * @param options Custom options:
+		 * 				  options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+		 * 				  options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+		 */
+        result: function () {
+
+        },
+        show: function (message, options) {
+            // Assigning defaults
+            var settings = $.extend({
+                dialogSize: 'm',
+                progressType: ''
+            }, options);
+            if (typeof message === 'undefined') {
+                message = 'Loading';
+            }
+            if (typeof options === 'undefined') {
+                options = {};
+            }
+            // Configuring dialog
+            $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+            if (settings.progressType) {
+                $dialog.find('i').prop("class", settings.progressType);
+            }
+            $dialog.find('label').prop("innerHTML", message);
+            $dialog.modal();
+        },
+        /**
+		 * Closes dialog
+		 */
+        hide: function () {
+            $dialog.modal('hide');
+        }
+    }
+
+})(jQuery);
+
+
+
+//WAITING SHOW
+//==============================
+var waitingDialog = (function ($) {
+
+    // Creating modal dialog's DOM
+    var $dialog = $(
+        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+        '<div class="modal-dialog modal-m">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header"><h5 style="margin:0;"></h5></div>' +
+        '<div class="modal-body">' +
+        '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
+        '</div>' +
+        '</div></div></div>');
+
+    return {
+        /**
+		 * Opens our dialog
+		 * @param message Custom message
+		 * @param options Custom options:
+		 * 				  options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+		 * 				  options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+		 */
+        show: function (message, options) {
+            // Assigning defaults
+            var settings = $.extend({
+                dialogSize: 'm',
+                progressType: ''
+            }, options);
+            if (typeof message === 'undefined') {
+                message = 'Loading';
+            }
+            if (typeof options === 'undefined') {
+                options = {};
+            }
+            // Configuring dialog
+            $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+            $dialog.find('.progress-bar').attr('class', 'progress-bar');
+            if (settings.progressType) {
+                $dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
+            }
+            $dialog.find('h5').text(message);
+            // Opening dialog
+            $dialog.modal();
+        },
+        /**
+		 * Closes dialog
+		 */
+        hide: function () {
+            $dialog.modal('hide');
+        }
+    }
+
+})(jQuery);
+
+// XU LY CONTROL EDIT
+function KeyDowMoveInput(s, event, index) {
+    if (event.keyCode === 13) {
+        $('[data-index="' + (index + 1).toString() + '"]').focus();
+    }
+}
+
+//XỬ LÝ VIEW
+function FuncEditView(idkey, sessionName, idDivForm) {
+    var s = $("#" + idDivForm).serializeArray();
+    var rel = SerializeArrayForm(s, s.length);
+    SetValueForEdit(idkey, sessionName, idDivForm);
+}
+function SetValueForEdit(idKey, sessionName, idDivForm) {
+    ajaxExec("Shared/SetValueToEdit", { key: idKey, sessionName: sessionName }, function (response) {
+        if (response.toString() === "") {
+        }
+        else if (response.toString().split(':')[0] === "Error") {
+            alert(response.toString().split(':')[1]);
+        }
+        else {
+            SetDataToForm(response, idDivForm);
+            //alert(response.toString().split(',')[1]);
+            //$('#dotThi').prop("innerHTML", response.toString());
+        }
+    });
+}
+
+var pubKey = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCelc639Q7TINPglOQgrVDwkjul\n7Oj8qYJI3EB19s9YmIGGso6geGklbV/PhKdmUo+9QHUJLI+GUq0V4aidHdjuXk06\nv9V3GC8l+xAJb3RX0/bh7szEbq/qNZ/rEFyESikZjI3Q8J1fr7YtyKTMoxu+6A/i\nO3Orov5Vfk6CYCfCvQIDAQAB\n-----END PUBLIC KEY-----";
+
+var kk = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClP54hcTK5KrHtreYRjcWpBSJQ\nn37oDtqThaYpH/AGoqhjK+D26y6XYdvdPb1Pu4oyciIXEST3MPicJXWyZkXsAFi1\n2G8Gtyzhzw8QWgajScV8R8np0YXuhwAWrCZZbZkjZKQyNqOdyLBAtwvgQKjIDFFg\nOrUNAQ2wWEVTv5ppZQIDAQAB\n-----END PUBLIC KEY-----";
+function encryptString(text) {
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(pubKey);
+    var encrypted = encrypt.encrypt(text);
+    return encrypted;
+}

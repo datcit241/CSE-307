@@ -1,0 +1,70 @@
+﻿var pubapi = new ApiInvoker('api/common');
+
+function CheckSinhVienDanhGia(type) {
+    var response = ajaxExec("GroupInfo/CheckSVDaDanhGiaHetChua", { loai: type });
+    if (response.toString() == "false") {
+        alert(pubapi.getLanguage("SINH_VIEN_CHUA_DANH_GIA_MH"));//"Sinh viên này chưa đánh giá hết môn học."
+        window.location = rootUrl + "Home/Index";
+    }
+}
+
+///menu là giá trị của emun LOAI_XEM_THONG_TIN_WEB
+function CheckSinhVienNoHP(menu) {
+    var response = ajaxExec("GroupInfo/CheckSinhVienNoHP", {menu:menu} );
+    if (response != "") {
+        alert(response);//"Sinh viên này còn nợ học phí"
+        window.location = rootUrl + "Home/Index";
+    }
+}
+
+function ShowSinhVienInfo(div_id) {
+    ajaxExec("GroupInfo/SinhVienInfoControl", undefined, function (response) {
+        if (response.toString() != "") {
+            //HideWaitingForm();
+            document.getElementById(div_id).innerHTML = response.toString();
+            //$('#'+div_id).prop("innerHTML", response.toString());
+        }
+        else {
+            HideWaitingForm();
+            //alert("Không tìm thấy thành phần điểm hoặc lỗi kết nối đến server. Vui lòng thử lại");
+            return false;
+        }
+    });
+}
+
+
+function GetSinhVienGuest() {
+    return ajaxExec("GroupInfo/GetSinhVienGuest", {});
+}
+
+function CheckSessionSinhVien(isreloadpage)
+{
+    var consession = ajaxExec("Manage/CheckSessionSinhVien", {});
+    if (consession == "true") {
+        return true;
+    }
+    else {
+        if (isreloadpage) {
+            window.location.reload();
+        }
+    }
+    return false;
+}
+
+/// REGION: KHU VỰC SCH
+
+function Init_XemThoiKhoaBieu () {
+    CheckSinhVienDanhGia(0);
+
+    ajaxExec("SCH/ShowThongBaoNoHocPhiTKB", undefined, function (response) {
+        if (response.toString() != "") {
+            alert(response.toString());
+            window.location = rootUrl + "Home/Index";
+            stateDK = false;
+            return false;
+        }
+    });
+
+}
+
+/// ENDREGION

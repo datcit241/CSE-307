@@ -1,0 +1,81 @@
+﻿function LoadDSThongBao() {
+    ShowWaittingSmallInfo(pubapi.getLanguage('DANG_DOC_DU_LIEU'));
+    ajaxExec("Manage/LoadDSThongBao", {}, function (response) {
+        if (response.toString() == "") {
+            $('#gridTBCN').prop("innerHTML", ' @AQData.Contracts.LanguageEnum.KHONG_CO_THONG_TIN_HIEN_THI');
+        }
+        else {
+            $('#gridTBCN').prop("innerHTML", response.toString());
+            if ($("#ContentThongBaoND").data("show") == '' && $("#ContentThongBaoND").data("notification") != pubapi.getLanguage('XEM_THONG_BAO')) {
+                $('#modalThongBaoND').modal();
+            }
+        }
+        HideWaitingForm();
+    });
+}
+function LoadNoiDungChiTietThongBao(keyvalue) {
+
+    ajaxExec("Manage/LoadNoiDungChiTietThongBao", { keyvalue: keyvalue }, function (response) {
+        if (response.toString() == "") {
+            alert("!!!!!!!!");
+        }
+        else {
+            for (i = 0; i <= response.length - 1; i++) {
+                var name = response[i].toString().split('#')[0];
+                if (name.trim() == "")
+                    continue;
+                name = "#" + name;
+
+                var values = response[i].toString().split('#')[1];
+                if (values == undefined)
+                    $(name).prop("innerHTML", "");
+                else
+                    $(name).prop("innerHTML", values.toString());
+
+                if ($(name).data("whatever") != "")
+                    $(name).data("content", keyvalue);
+            }
+        }
+    });
+}
+//function XoaMauTin(sa, key) {
+
+//    if (sa != "1") {
+//        return false;
+//    }
+//    ShowWaittingSmallInfo(pubapi.getLanguage('DANG_XOA_DU_LIEU'));
+//    ajaxExec("Manage/DeleteThongBao", { KeyValue: key }, function (response) {
+//        if (response != "") {
+//            ShowDialog(pubapi.getLanguage('XOA_DU_LIEU_THANH_CONG'), "sm");
+//            LoadDSThongBao();
+//        }
+//        else {
+//            ShowDialog(pubapi.getLanguage('XOA_DU_LIEU_THAT_BAI'), "sm", "danger");
+//        }
+//        HideWaitingForm();
+//    });
+//}
+//function DeleteSelected(sa) {
+//    if (sa != "") {
+
+//        var rel = GetCheckItem("IDThongBaoNDCT_chk_KH");
+//        if (rel.length >= 1) {
+//            ShowDialogErrorConfirm(pubapi.getLanguage('XAC_NHAN_XOA_DU_LIEU_DANG_CHON'), "XoaMauTin", rel, "sm", "danger");
+
+//        }
+//        else {
+//            ShowDialog(pubapi.getLanguage('VUI_LONG_CHON_DU_LIEU_XOA'));
+//            return false;
+
+//        }
+
+//    }
+//    else {
+//        ShowDialog(pubapi.getLanguage('VUI_LONG_CHON_DU_LIEU_XOA'));
+//        return false;
+//    }
+//}
+$(function () {
+
+    LoadDSThongBao();
+});

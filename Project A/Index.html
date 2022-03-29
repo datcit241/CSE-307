@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TD Electronics Supermarket Management </title>
+    
+<!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+<!--    FontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+<!--    JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    
+    <style>
+        #menu-icon {
+            position: fixed;
+            top: 20%;
+            
+            transform: translateX(-35%);
+            
+            background-color: #86A8E7;
+            color: #FCF4DD;
+
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            
+            text-align: center;
+            line-height: 40px;
+            z-index: 8;
+        }
+        header {
+            background-color: #86A8E7;
+            position: relative;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        header .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding-block: 10px;
+            /*background-color: #ECE6D2;*/
+            /*background-color: #58949C;*/
+            /*background-color: #845EC2;*/
+            background-color: #86A8E7;
+            /*color: #58949C;*/
+            /*color: #ECE6D2;*/
+            /*color: #ADC5CF;*/
+            color: white;
+            font-weight: bold;
+
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        .brand h3 {
+            /*color: #FCF4DD;*/
+            font-weight: bold;
+        }
+        .student-info p:last-child {
+            margin-bottom: 0;
+        }
+        .container > p {
+            margin-bottom: 0;
+        }
+        aside {
+            position: fixed;
+            margin-inline: auto;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            
+            border-bottom-left-radius: 30px;
+            /*border-bottom-right-radius: 40px;*/
+            /*border-top-right-radius: 40px;*/
+            /*border-top-left-radius: 40px;*/
+            /*border-bottom-right-radius: 40px;*/
+            
+            display: none;
+        }
+        #categories {
+            color: #86A8E7;
+            list-style: none;
+            cursor: pointer;
+
+            padding: 0;
+        }
+        .category-item {
+            padding: 15px 30px;
+            margin: 10px 20px;
+            
+            text-align: center;
+            
+            border-radius: 40px;
+            background-color: white;
+        }
+        .category-item:hover {
+            background-color: #FCF4DD;
+            color: #86A8E7;
+        }
+        .category-item.selected {
+            background-color: #86A8E7;
+            color: #FCF4DD;
+            /*background-color: #58949C;*/
+            /*background-color: #845EC2;*/
+            
+        }
+        /*.category-item.selected:hover {*/
+        /*    border: 1px solid #86A8E7;*/
+        /*}*/
+        #overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 9;
+            
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+        #btn-close-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            
+            display: inline-block;
+            
+            color: white;
+            cursor: pointer;
+
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            
+            line-height: 40px;
+            text-align: center;
+        }
+        main {
+            padding: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .product-list {
+            width: 100%;
+            margin-bottom: 345.6px;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #86A8E7;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: rgba(252, 244, 221, 0.5);
+            color: #86A8E7;
+        }
+        tbody tr.selected {
+            background-color: #FCF4DD;
+            color: #86A8E7;
+        }
+        a {
+            text-decoration: none;
+        }
+        tbody a:link{
+            color: #86A8E7;
+        }
+        tbody a:visited{
+            color: #86A8E7;
+        }
+        tbody tr:nth-child(even) a:link:not(tr:hover a:link) {
+            color: #FCF4DD;
+        }
+        tbody tr:nth-child(even) a:visited:not(tr:hover a:visited) {
+            color: #FCF4DD;
+        }
+        .editor {
+            padding-top: 15px;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            
+            /*background-color: rgba(134, 168, 231, 0.9);*/
+            background-color: white;
+            text-align: center;
+        }
+        .inputs {
+            margin-inline: auto;
+            margin-bottom: 10px;
+            width: 80%;
+        }
+        input, textarea, select {
+            margin-inline: auto;
+            padding-inline: 10px;
+            border: 1px solid #86A8E7;
+            color: #86A8E7;
+        }
+        input, select {
+            border-radius: 5px;
+            /*margin-inline: auto;*/
+            max-width: 100%;
+            width: 100%;
+        }
+        .textarea-container {
+            width: 80%;
+        }
+        textarea {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            margin-bottom: 15px;
+        }
+        .editor button {
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+        #btn-add {
+            background-color: #FCF4DD;
+            color: #86A8E7;
+        }
+        #btn-add:hover {
+            background-color: #FFCC36;
+        }
+        #btn-del {
+            color: #FCF4DD;
+        }
+        footer {
+            /*position: fixed;*/
+            /*bottom: 0;*/
+            /*right: 0;*/
+            /*left: 0;*/
+            /*display: none;*/
+            
+            text-align: center;
+            
+            padding: 10px;
+            
+            /*background-color: #FCF4DD;*/
+            background-color: #86A8E7;
+            /*color: #86A8E7;*/
+            /*color: white;*/
+            color: #FCF4DD;
+            
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        @media all and (min-width: 768px) {
+            .product-list {
+                margin-bottom: 274.4px
+            }
+        }
+        @media all and (min-width: 992px) {
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+            .brand p {
+                margin: 0;
+            }
+            aside {
+                display: block !important;
+                top: 84px;
+                left: 1px;
+                right: auto;
+                bottom: 2px;
+
+                /*border-inline: 2px solid #86A8E7;*/
+                /*border-bottom: 2px solid #86A8E7;*/
+                outline: 2px solid #86A8E7;
+                
+                /*max-height: 635.6px;*/
+                overflow: auto;
+                
+                margin-inline: 0;
+            }
+            #categories {
+                max-width: 256px;
+                min-width: 256px;
+            }
+            #menu-icon {
+                display: none !important;
+            }
+            main {
+                margin-left: 256px;
+                margin-top: 84px;
+            }
+            .product-list {
+                margin-bottom: 238.8px;
+            }
+            .editor {
+                left: 256px;
+            }
+            footer {
+                border-bottom-left-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <span id="menu-icon"><i class="fa-solid fa-bars"></i></span>
+    <header>
+        <div class="container">
+            <div class="brand">
+                <h3>TD Electronics Supermarket Management</h3>
+            </div>
+            <div class="student-info">
+                <p>1931200004 - Võ Nguyễn Tiến Đạt</p>
+                <p>1931209002 - Nguyễn Thanh Thuận</p>
+            </div>
+            <p>MSc Hà Minh Ngọc</p>
+        </div>
+    </header>
+    
+    <aside>
+        <ul id="categories">
+<!--            <li class="category-item selected" data-id="1">Laptop, Desktop</li>-->
+<!--            <li class="category-item" data-id="2">Mobile Phone</li>-->
+<!--            <li class="category-item" data-id="3">Speaker</li>-->
+<!--            <li class="category-item" data-id="4">Printer</li>-->
+<!--            <li class="category-item" data-id="5">Projector</li>-->
+        </ul>
+    </aside>
+    <div id="overlay">
+        <span id="btn-close-menu">&times;</span>
+    </div>
+
+    <main>
+        <table class="product-list">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+                <tr>
+                    <td>00100001</td>
+                    <td>Printer</td>
+                    <td>Panasonic</td>
+                    <td>2.000.000 VND</td>
+                    <td><a target="_blank" href="https://google.com">Link</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="editor">
+            <div class="inputs container">
+                <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 gy-2">
+                    <div class="col">
+<!--                        <input type="text" name="category" placeholder="Category">-->
+                        <select name="category" id="category">
+                            <option value="">Printer</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="text" name="name" placeholder="Name">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="price" placeholder="Price">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="link" placeholder="Link">
+                    </div>
+                </div>
+            </div>
+            <div class="container textarea-container">
+                <textarea name="description" placeholder="Description"></textarea>
+            </div>
+            <div class="buttons">
+                <button id="btn-add" class="btn btn-warning" function="add">Add</button>
+                <button id="btn-del" class="btn btn-danger" disabled>Delete</button>
+                <button id="btn-cancel" class="btn btn-secondary" disabled>Cancel</button>
+            </div>
+            <footer>Copyright &copy; 2022 - TD. All rights reserved</footer>
+        </div>
+    </main>
+
+    
+    <script>
+        // init categories
+        let categories = ['Laptop, Desktop', 'Mobile Phone', 'Speaker', 'Printer', 'Projector'];
+        // init select box of categories
+        let options = '';
+        categories.forEach(c => {
+            options += `<option value="${c}">${c}</option>`;
+        });
+        $('#category').html(options);
+        
+        // product manager which manages products and includes add, update, and delete functions
+        let productManager = {
+            productList : new Array(),
+            lastID : new Map([[categories[0], 0], [categories[1], 0], [categories[2], 0], [categories[3], 0], [categories[4], 0]]),
+            
+            get(code) {
+                return this.productList.filter(product => {
+                    if (product.code == code) {
+                        return product;
+                    }
+                });
+            },
+            
+            addProduct(category, name, price, link, description) {
+                this.lastID.set(category, this.lastID.get(category) + 1);
+                
+                let categoryCode = categories.indexOf(category) + 1;
+                let code = ('000' + categoryCode).substr(-3);
+                code += ('00000' + this.lastID.get(category)).substr(-5);
+                
+                let product = {
+                    code : code,
+                    category : category,
+                    name : name,
+                    price : price,
+                    link : link,
+                    description : description,
+                };
+                
+                this.productList.push(product);
+            },
+            
+            removeProduct(code) {
+                this.productList.splice(this.productList.map(p => p.code).indexOf(code), 1);
+            },
+            
+            updateProduct(code, category, name, price, link, description) {
+                let product = this.productList[this.productList.map(p => p.code).indexOf(code)];
+                
+                if (product.category != category) {
+                    this.lastID.set(category, this.lastID.get(category) + 1);
+
+                    let categoryCode = categories.indexOf(category) + 1;
+                    let code = ('000' + categoryCode).substr(-3);
+                    code += ('00000' + this.lastID.get(category)).substr(-5);
+                    product.code = code;
+                }
+
+                product.category = category;
+                product.name = name;
+                product.price = price;
+                product.link = link;
+                product.description = description;
+            },
+        };
+
+
+        initProductList();
+        
+        function initProductList() {
+            let cate = 'Mobile Phone';
+            
+            productManager.addProduct('Mobile Phone', 'Samsung Galaxy S22 Ultra 5G', 30990000, 'https://www.thegioididong.com/dtdd/samsung-galaxy-s22-ultra?src=osp', 'Màn hình 6.8", Chip Snapdragon 8 Gen 1 8 nhân\n' +
+                '\n' +
+                'RAM 8 GB, ROM 128 GB\n' +
+                '\n' +
+                'Camera sau: Chính 108 MP & Phụ 12 MP, 10 MP, 10 MP\n' +
+                '\n' +
+                'Camera trước: 40 MP\n' +
+                '\n' +
+                'Pin 5000 mAh, Sạc 45 W');
+            productManager.addProduct('Mobile Phone', 'Samsung Galaxy Z Fold3 5G', 41990000, 'https://www.thegioididong.com/dtdd/samsung-galaxy-z-fold-3?src=osp', 'Màn hình Chính 7.6" & Phụ 6.2", Chip Snapdragon 888\n' +
+                '\n' +
+                'RAM 12 GB, ROM 256 GB\n' +
+                '\n' +
+                'Camera sau: 3 camera 12 MP\n' +
+                '\n' +
+                'Camera trước: 10 MP & 4 MP\n' +
+                '\n' +
+                'Pin 4400 mAh, Sạc 25 W');
+            productManager.addProduct('Mobile Phone', 'Samsung Galaxy S22+ 5G', 25990000, 'https://www.thegioididong.com/dtdd/samsung-galaxy-s22-plus?src=osp', 'Màn hình 6.6", Chip Snapdragon 8 Gen 1 8 nhân\n' +
+                '\n' +
+                'RAM 8 GB, ROM 128 GB\n' +
+                '\n' +
+                'Camera sau: Chính 50 MP & Phụ 12 MP, 10 MP\n' +
+                '\n' +
+                'Camera trước: 10 MP\n' +
+                '\n' +
+                'Pin 4500 mAh, Sạc 45 W');
+            productManager.addProduct('Mobile Phone', 'Samsung Galaxy S21 Ultra 5G 128GB', 25990000, 'https://www.thegioididong.com/dtdd/samsung-galaxy-s21-ultra?src=osp', 'Màn hình 6.8", Chip Exynos 2100\n' +
+                '\n' +
+                'RAM 12 GB, ROM 128 GB\n' +
+                '\n' +
+                'Camera sau: Chính 108 MP & Phụ 12 MP, 10 MP, 10 MP\n' +
+                '\n' +
+                'Camera trước: 40 MP\n' +
+                '\n' +
+                'Pin 5000 mAh, Sạc 25 W');
+            
+            productManager.addProduct('Laptop, Desktop', 'Asus Gaming ROG Flow Z13 GZ301Z i7 12700H (LD110W)', 49990000, 'https://www.thegioididong.com/laptop/asus-gaming-rog-flow-z13-gz301z-i7-ld110w?src=osp', '13.4", Full HD+, 120Hz\n' +
+                '\n' +
+                'CPU\n' +
+                'i7, 12700H, 2.30 GHz\n' +
+                '\n' +
+                'CARD\n' +
+                'RTX 3050 4GB\n' +
+                '\n' +
+                'PIN\n' +
+                '4-cell, 56Wh');
+            productManager.addProduct('Laptop, Desktop', 'Asus Gaming ROG Flow Z13 GZ301Z i7 12700H (LD110W)', 49990000, 'https://www.thegioididong.com/laptop/asus-gaming-rog-flow-z13-gz301z-i7-ld110w?src=osp', '13.4", Full HD+, 120Hz\n' +
+                '\n' +
+                'CPU\n' +
+                'i7, 12700H, 2.30 GHz\n' +
+                '\n' +
+                'CARD\n' +
+                'RTX 3050 4GB\n' +
+                '\n' +
+                'PIN\n' +
+                '4-cell, 56Wh');
+            productManager.addProduct('Laptop, Desktop', 'Asus Gaming ROG Flow Z13 GZ301Z i7 12700H (LD110W)', 49990000, 'https://www.thegioididong.com/laptop/asus-gaming-rog-flow-z13-gz301z-i7-ld110w?src=osp', '13.4", Full HD+, 120Hz\n' +
+                '\n' +
+                'CPU\n' +
+                'i7, 12700H, 2.30 GHz\n' +
+                '\n' +
+                'CARD\n' +
+                'RTX 3050 4GB\n' +
+                '\n' +
+                'PIN\n' +
+                '4-cell, 56Wh');
+            productManager.addProduct('Printer', 'Máy In Laser Trắng Đen Canon LBP2900', 3690000, 'https://www.thegioididong.com/may-in/may-in-laser-canon-lbp2900?src=osp', '');
+            productManager.addProduct('Printer', 'Máy In Laser Trắng Đen Canon LBP2900', 3690000, 'https://www.thegioididong.com/may-in/may-in-laser-canon-lbp2900?src=osp', '');
+            productManager.addProduct('Printer', 'Máy in Laser Trắng Đen HP 107a (4ZB77A)', 2590000, 'https://www.thegioididong.com/may-in/laser-trang-den-hp-107a-4zb77a?src=osp', '');
+            productManager.addProduct('Printer', 'Máy in Laser Trắng Đen HP 107w WiFi (4ZB78A)', 2990000, 'https://www.thegioididong.com/may-in/laser-trang-den-hp-107w-wifi-4zb78a?src=osp', '');
+            
+            productManager.addProduct('Projector', 'Máy Chiếu Smart Tivi 100 inch Bỏ Túi Samsung The Freestyle', 24900000, 'https://www.dienmayxanh.com/may-chieu/cong-nghe-bo-tui-fhd-samsung-the-freestyle-sp-lsp3?src=osp', '')
+            productManager.addProduct('Projector', 'Máy Chiếu Smart Tivi 100 inch Bỏ Túi Samsung The Freestyle', 24900000, 'https://www.dienmayxanh.com/may-chieu/cong-nghe-bo-tui-fhd-samsung-the-freestyle-sp-lsp3?src=osp', '')
+            productManager.addProduct('Projector', 'Máy Chiếu Siêu Gần Laser 4K Samsung The Premiere LSP9T', 174900000, 'https://www.dienmayxanh.com/may-chieu/samsung-the-premiere-lsp9t?src=osp', '')
+            productManager.addProduct('Projector', 'Máy Chiếu Siêu Gần Laser 4K Samsung The Premiere LSP9T', 174900000, 'https://www.dienmayxanh.com/may-chieu/samsung-the-premiere-lsp9t?src=osp', '')
+        }
+        
+        function addEventListeners() {
+            // event handler for mobile menu
+            $('#menu-icon').click(() => {
+                $('aside').fadeIn();
+                $('#overlay').fadeIn();
+                $('#menu-icon').hide();
+            })
+            $('#btn-close-menu').click(() => {
+                $('aside').fadeOut();
+                $('#overlay').fadeOut();
+                $('#menu-icon').show();
+            })
+
+            // show footer when the bottom is reached and hide otherwise
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    $('footer').show();
+                } else {
+                    $('footer').hide();
+                }
+            });
+
+            // event handler for selecting a category
+            $('#categories').on('click', 'li', event => {
+                $(event.target).toggleClass('selected');
+                showCurrentProductList();
+                
+                if ($('#btn-add').attr('function') == 'add') {
+                    disableButtons()
+                }
+            });
+            // event handler for selecting a row
+            $('tbody').on('click', 'tr', event => {
+                let target = event.target;
+
+                if (target.tagName == 'TD') {
+                    target = target.parentElement;
+                }
+
+                $(target).toggleClass('selected');
+
+                let selectedRows = $('tbody .selected');
+
+                if (selectedRows.length == 0) {
+                    clearInputs();
+                    
+                    // disable cancel and delete buttons
+                    disableButtons();
+                } else if (selectedRows.length == 1) {
+                    // fill the inputs
+                    let code = $('tr.selected td:first-child').text();
+                    let product = productManager.get(code)[0];
+
+                    $('[name="category"]').val(product.category);
+                    $('[name="name"]').val(product.name);
+                    $('[name="price"]').val(product.price);
+                    $('[name="link"]').val(product.link);
+                    $('[name="description"]').val(product.description);
+                    
+                    // change add to update and set data-id of the button to product's code
+                    $('#btn-add').text('Update');
+                    $('#btn-add').attr('function', 'update');
+                    $('#btn-add').attr('data-id', code);
+                    
+                    // enable cancel and delete buttons
+                    enableButtons();
+                } else {
+                    clearInputs();
+                    
+                    // enable cancel and delete buttons
+                    enableButtons();
+                }
+            });
+            $('#btn-add').on('click', () => {
+                let message = validate();
+                
+                if (message != '') {
+                    alert(message);
+                } else {
+                    if ($('#btn-add').attr('function') == 'add') {
+                        productManager.addProduct($('[name="category"]').val(), $('[name="name"]').val(), $('[name="price"]').val(), $('[name="link"]').val(), $('[name="description"]').val());
+                        showCurrentProductList();
+                    } else {
+                        productManager.updateProduct($('#btn-add').attr('data-id'), $('[name="category"]').val(), $('[name="name"]').val(), $('[name="price"]').val(), $('[name="link"]').val(), $('[name="description"]').val());
+                        showCurrentProductList();
+                    }
+                    clearAll();
+                }
+            });
+            $('#btn-del').on('click', () => {
+                let productCodeList = Array.from($('tr.selected td:first-child')).map(td => td.innerText);
+                
+                if (confirm('You are about to delete ' + productCodeList.length + ' products. Are you sure?')) {
+                    productCodeList.forEach(code => {
+                        productManager.removeProduct(code);
+                    });
+
+                    showCurrentProductList();
+                    clearAll();
+                }
+            });
+            $('#btn-cancel').on('click', clearAll);
+        }
+        
+        addEventListeners();
+        
+        function validate() {
+            let message = '';
+            
+            if ($('[name="name"]').val() == '') {
+                message += 'Name cannot be blank. \n';
+            }
+            
+            let price = $('[name="price"]').val();
+            
+            if (price == '') {
+                price = 0;
+            }
+            
+            if (isNaN(price)) {
+                message += '\nPrice must be a number.';
+            }
+            
+            return message;
+        }
+
+        function clearAll() {
+            clearSelection();
+            clearInputs();
+            disableButtons();
+        }
+        // deselect all rows
+        function clearSelection() {
+            $('tr').removeClass('selected');
+        }
+        // reset all input fields and buttons
+        function clearInputs() {
+            let selectedCategories = getSelectedCategories();
+            
+            if (selectedCategories.length == 1) {
+                $('[name="category"]').val(selectedCategories[0]);
+            } else {
+                $('[name="category"]').val(categories[0]);
+            }
+            $('[name="name"]').val('');
+            $('[name="price"]').val('');
+            $('[name="link"]').val('');
+            $('[name="description"]').val('');
+            $('#btn-add').attr('function', 'add');
+            $('#btn-add').text('Add');
+            $('#btn-add').removeAttr('data-id');
+        }
+        function enableButtons() {
+            $('#btn-del').removeAttr('disabled');
+            $('#btn-cancel').removeAttr('disabled');
+        }
+        function disableButtons() {
+            $('#btn-del').attr('disabled', true);
+            $('#btn-cancel').attr('disabled', true);
+        }
+        
+        showCategories();
+        showCurrentProductList();
+        
+        function showCategories() {
+            let str = '';
+            let index = 1;
+            categories.forEach(c => {
+                str += `<li class="category-item" data-id="${index++}">${c}</li>`;
+            });
+            $('#categories').html(str);
+        }
+        function showCurrentProductList() {
+            let selectedCategories = getSelectedCategories();
+            
+            if (!selectedCategories.length) {
+                showProductList(productManager.productList);
+            } else {
+                let list = productManager.productList.filter(product => {
+                    if (selectedCategories.includes(product.category)) {
+                        return product;
+                    }
+                });
+                showProductList(list);
+            }
+            
+            if (selectedCategories.length == 1) {
+                $('[name="category"]').val(selectedCategories[0]);
+            } else {
+                $('[name="category"]').val(categories[0]);
+            }
+            
+        }
+        
+        function getSelectedCategories() {
+            return Array.from($('li.selected')).map(category =>  category.innerText);
+        }
+        
+        function showProductList(list) {
+            let str = '';
+            
+            list.forEach(product => {
+                let price = product.price.toString();
+                
+                for (let index = price.length - 3; index > 0; index -= 3) {
+                    price = addStr(price, index, ',');
+                }
+                
+                price += ' VNĐ';
+                
+                str +=
+                    `<tr>
+                        <td>${product.code}</td>
+                        <td>${product.category}</td>
+                        <td>${product.name}</td>
+                        <td>${price}</td>
+                        <td><a target="_blank" href="${product.link}">Link</a></td>
+                    </tr>`;
+                
+                function addStr(str, index, stringToAdd){
+                    return str.substring(0, index) + stringToAdd + str.substring(index, str.length);
+                }
+            });
+            $('tbody').html(str);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

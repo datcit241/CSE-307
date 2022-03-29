@@ -1,0 +1,135 @@
+﻿var rootUrl;
+//Call Api Helper
+//var api = new ApiInvoker(controllerUrl)
+//var ret = api.Method(arg1,....)
+//var ret = api.MethodAsync(arg1,....,callback)
+function ApiInvoker(apiUrl) {
+    while (apiUrl[apiUrl.length - 1] === '/') apiUrl = apiUrl.substring(0, apiUrl.length - 2);
+    var apiObj = this;
+    
+    $.ajax({
+        cache: false,
+        async: false,
+        type: "GET",
+        url: rootUrl + apiUrl + "/GetApi",
+        contentType: 'application/json',
+        success: (response) => {
+            $.each(response["Methods"], function (key, value) {
+                var apiMethodName = value.MethodName;
+                apiObj[apiMethodName + "Async"] = function () {
+                    var args = Array.prototype.slice.call(arguments);
+                    var callback = args.pop();
+                    if (typeof (callback) !== "function") throw "The last argument must be a callback function";
+                    return asyncDispatch(apiUrl, value.MethodIndex, args, callback);
+                }
+                apiObj[apiMethodName] = function () {
+                    var args = Array.prototype.slice.call(arguments);
+                    return syncDispatch(apiUrl, value.MethodIndex, args);
+                }
+            });
+        },
+        error: (x, y, z) => {
+            alert('invoker: ' + x.responseText + '\n' + y + '\n' + z);
+        }
+    });
+
+    function asyncDispatch(apiUrl, methodIndex, parameterValues, callback) {
+        var dispatchData = new Object();
+        dispatchData.ParameterValues = parameterValues;
+        dispatchData.MethodIndex = methodIndex;
+        ajaxExec(apiUrl + "/InvokeApi", dispatchData, callback);
+    }
+    function syncDispatch(apiUrl, methodIndex, parameterValues) {
+        var dispatchData = new Object();
+        dispatchData.ParameterValues = parameterValues;
+        dispatchData.MethodIndex = methodIndex;
+        return ajaxExec(apiUrl + "/InvokeApi", dispatchData);
+    }
+}
+
+ApiInvoker.prototype.getLanguage = function (id) {
+    return this.GetText(id);
+}
+
+ApiInvoker.prototype.isSinhVien = function () {
+    return this.GetIsSinhVien();
+}
+
+ApiInvoker.prototype.isAdmin = function () {
+    return this.GetIsAdmin();
+}
+
+ApiInvoker.prototype.isGiangVien = function () {
+    return this.GetIsGiangVien();
+}
+
+
+ApiInvoker.prototype.getNHHKDefaultXemTKB = function () {
+    return this.GetNHHKDefaultXemTKB();
+}
+
+ApiInvoker.prototype.getNHHKDefaultXemKQDG = function () {
+    return this.GetNHHKDefaultXemKQDG();
+}
+
+ApiInvoker.prototype.getNHHKDefaultXemHDDT = function () {
+    return this.GetNHHKDefaultXemHDDT();
+}
+
+function ajaxExec(methodUrl, parameterValues, callback, dataType, hideWaitingForm) {
+    if (methodUrl === undefined) {
+        alert('no method');
+        return null;
+    }
+    //writeLog(methodUrl, true);
+    var async = typeof (callback) === "function";
+    if (parameterValues === undefined) parameterValues = {};
+    if (typeof (callback) !== "function") {
+        callback = function (receivedData) {
+            result = receivedData;
+        }
+    }
+    var success = function (ret) {
+        callback(ret);
+        //writeLog('success:' + methodUrl, false);
+    }
+    if (!dataType) dataType = "json";
+    var result;
+    $.ajax({
+        cache: false,
+        async: async,
+        timeout: 600000,
+        type: "POST",
+        url: rootUrl + methodUrl,
+        contentType: 'application/json;charset=utf-8',
+        dataType: dataType,
+        data: JSON.stringify(parameterValues),
+        success: success,
+        error: (x, y, z) => {
+            HideWaitingForm();
+            ShowDialog(rootUrl + methodUrl + ': ' + x.responseText + '\n' + y + '\n' + z, 'sm', 'danger');
+        },
+        complete: (x, errText) => {
+            if (hideWaitingForm)
+                HideWaitingForm();
+            if (errText === 'timeout' || errText === 'abort')
+                ShowDialog(errText, 'sm', 'danger');
+        }
+    });
+    return result;
+}
+
+
+function writeLog(func, start) {
+    $.ajax({
+        type: "POST", url: rootUrl + "Home/WriteLog",
+        dataType: "json",
+        data: { func: func, start: start },
+        success: function (response) {
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+
+        }
+    });
+}
